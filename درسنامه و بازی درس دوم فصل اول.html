@@ -1,0 +1,1105 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f9f91">
+  <meta name="description" content="آموزش تعاملی یادآوری عددنویسی، فصل اول ریاضی ششم دبستان">
+  <title>ریاضی ششم | یادآوری عددنویسی</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <style>
+    :root{
+      --ink:#183b56;--muted:#638095;--paper:#f7fbff;--white:#fff;
+      --teal:#12a594;--teal-dark:#087c73;--teal-pale:#e7faf6;
+      --blue:#3978d4;--blue-pale:#edf5ff;--coral:#ff6b6b;--coral-pale:#fff0ef;
+      --sun:#ffc857;--sun-pale:#fff7dc;--purple:#7c63d8;--purple-pale:#f2efff;
+      --green:#2eb67d;--red:#e94f5f;--line:#dbe8f0;--shadow:0 14px 35px rgba(32,73,105,.11);
+      --radius:24px;--radius-sm:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Vazirmatn,Tahoma,sans-serif}
+    body{min-height:100dvh;overflow:hidden;line-height:1.8}
+    button,input{font:inherit}
+    button{border:0;cursor:pointer;color:inherit}
+    button:focus-visible,.card:focus-visible{outline:4px solid rgba(57,120,212,.28);outline-offset:3px}
+    [hidden]{display:none!important}
+    .screen{height:100dvh;position:relative;isolation:isolate;background:
+      radial-gradient(circle at 8% 10%,rgba(255,200,87,.18),transparent 22%),
+      radial-gradient(circle at 92% 92%,rgba(18,165,148,.14),transparent 24%),var(--paper)}
+    .screen::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;background-image:radial-gradient(rgba(57,120,212,.10) 1.3px,transparent 1.3px);background-size:24px 24px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.35),transparent 36%)}
+    .ltr{direction:ltr;unicode-bidi:isolate}.nowrap{white-space:nowrap}.muted{color:var(--muted)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:46px;padding:.68rem 1.1rem;border-radius:14px;background:#fff;border:1.5px solid var(--line);font-weight:700;transition:.18s ease;box-shadow:0 4px 14px rgba(28,62,88,.06)}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(28,62,88,.10)}
+    .btn.primary{background:linear-gradient(135deg,var(--teal),#19bca7);color:#fff;border-color:transparent}
+    .btn.blue{background:linear-gradient(135deg,var(--blue),#5b96e6);color:#fff;border-color:transparent}
+    .btn.sun{background:linear-gradient(135deg,#ffd66e,var(--sun));color:#59420b;border-color:transparent}
+    .btn.ghost{background:rgba(255,255,255,.72)}
+    .btn.small{min-height:38px;padding:.4rem .8rem;font-size:.87rem;border-radius:11px}
+    .eyebrow{display:inline-flex;align-items:center;gap:.45rem;background:var(--teal-pale);color:var(--teal-dark);padding:.35rem .75rem;border-radius:999px;font-size:.82rem;font-weight:800}
+    .eyebrow.book{background:var(--sun-pale);color:#85610a}.eyebrow.practice{background:var(--purple-pale);color:#5f48bd}
+    .watermark{position:static;flex:0 0 22px;min-height:22px;display:flex;align-items:center;justify-content:flex-start;padding:0 18px 3px;color:#6e8798;font-size:.68rem;opacity:.68;pointer-events:none;white-space:nowrap;background:rgba(247,251,255,.92)}
+
+    /* بنر امتیاز کلی در صفحه اصلی */
+    .score-banner{display:flex;align-items:center;gap:.85rem;background:linear-gradient(135deg,#fff9e6,#ffefc2);border:2px solid #ffd54f;padding:.75rem 1.2rem;border-radius:18px;margin:1rem 0;box-shadow:0 8px 20px rgba(255,193,7,.18)}
+    .score-banner-icon{font-size:2.2rem;line-height:1}
+    .score-banner strong{display:block;font-size:1.15rem;color:#744210}
+    .score-banner small{display:block;color:#975a16;font-size:.85rem;font-weight:700}
+
+    /* خانه */
+    #homeScreen{overflow:auto}
+    .home-shell{width:min(1120px,92vw);min-height:100dvh;margin:auto;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(1.5rem,5vw,5rem);padding:clamp(2rem,6vh,5rem) 0 5rem}
+    .hero-copy h1{font-size:clamp(1.75rem,4vw,3.35rem);line-height:1.35;margin:.9rem 0 .25rem;font-weight:900;letter-spacing:-.04em}
+    .hero-copy h1 span{color:var(--teal)}
+    .hero-sub{font-size:clamp(1.35rem,2.5vw,2rem);font-weight:800;margin:0 0 .7rem;color:var(--blue)}
+    .hero-desc{color:var(--muted);max-width:650px;margin:0 0 1.2rem;font-size:1rem}
+    .main-cards{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.1rem}
+    .main-card{position:relative;text-align:right;padding:1.35rem;border-radius:22px;background:#fff;box-shadow:var(--shadow);border:1.5px solid rgba(219,232,240,.9);overflow:hidden;min-height:174px;transition:.2s ease}
+    .main-card:hover{transform:translateY(-5px);box-shadow:0 20px 42px rgba(32,73,105,.15)}
+    .main-card::after{content:"";position:absolute;width:105px;height:105px;border-radius:50%;left:-28px;bottom:-42px;background:var(--teal-pale)}
+    .main-card.games::after{background:var(--sun-pale)}
+    .main-card .big-icon{width:54px;height:54px;border-radius:17px;background:var(--teal-pale);display:grid;place-items:center;font-size:1.7rem;margin-bottom:.65rem}
+    .main-card.games .big-icon{background:var(--sun-pale)}
+    .main-card strong{display:block;font-size:1.17rem}.main-card small{display:block;color:var(--muted);margin-top:.25rem}
+    .mini-progress{margin-top:.7rem;height:7px;border-radius:9px;background:#edf2f6;overflow:hidden;width:80%}.mini-progress i{display:block;height:100%;background:var(--teal);border-radius:9px;width:0}
+    .home-footer{position:absolute;right:0;left:0;bottom:14px;text-align:center;color:#71899a;font-size:.77rem;padding:0 1rem}
+    .hero-visual{position:relative;min-height:500px;display:grid;place-items:center}
+    .visual-card{width:min(470px,92vw);background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.9);border-radius:34px;box-shadow:0 30px 60px rgba(31,86,119,.16);padding:1.5rem;transform:rotate(-1deg)}
+    .number-city{display:grid;grid-template-columns:repeat(4,1fr);gap:.55rem;align-items:end;height:275px;padding:1rem .25rem .25rem;direction:rtl}
+    .tower{border-radius:18px 18px 10px 10px;text-align:center;padding:.7rem .25rem;color:#fff;font-weight:800;box-shadow:inset 0 -10px rgba(0,0,0,.05)}
+    .tower:nth-child(1){height:115px;background:var(--teal)}.tower:nth-child(2){height:158px;background:var(--blue)}.tower:nth-child(3){height:201px;background:var(--purple)}.tower:nth-child(4){height:244px;background:var(--coral)}
+    .tower .windows{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin:.65rem .2rem}.tower .windows i{height:24px;background:rgba(255,255,255,.74);border-radius:5px;display:grid;place-items:center;color:var(--ink);font-size:.7rem;font-style:normal}
+    .visual-caption{display:flex;align-items:center;justify-content:space-between;background:var(--blue-pale);padding:.75rem 1rem;border-radius:15px;font-weight:700}
+    .floating{position:absolute;border-radius:18px;background:#fff;box-shadow:0 12px 30px rgba(31,86,119,.14);padding:.6rem .8rem;font-weight:900;animation:float 5s ease-in-out infinite}
+    .f1{top:10%;right:-2%;color:var(--coral);font-size:1.3rem}.f2{bottom:15%;left:-3%;color:var(--blue);animation-delay:-2s}.f3{top:30%;left:-8%;color:var(--teal);animation-delay:-3.2s}
+    @keyframes float{50%{transform:translateY(-9px) rotate(2deg)}}
+
+    /* سربرگ برنامه */
+    .app-view{display:flex;flex-direction:column}
+    .topbar{min-height:68px;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem clamp(.8rem,3vw,2.2rem);background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}
+    .topbar-title{display:flex;align-items:center;gap:.75rem;min-width:0}.topbar-title .mark{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;display:grid;place-items:center;font-weight:900}.topbar-title strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.topbar-title small{display:block;color:var(--muted);font-size:.72rem;line-height:1.2}
+    .top-actions{display:flex;align-items:center;gap:.55rem}
+    .progress-wrap{height:7px;background:#e9f0f4;position:relative;z-index:4}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .3s;border-radius:0 9px 9px 0}
+
+    /* اسلایدها */
+    .slide-stage{flex:1;min-height:0;overflow:auto;padding:clamp(1rem,2.5vw,2.2rem) clamp(.8rem,3vw,2rem) 1.1rem;scroll-behavior:smooth}
+    .slide{display:none;min-height:100%;align-items:center;justify-content:center;animation:slideIn .3s ease}.slide.active{display:flex}
+    @keyframes slideIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+    .slide-inner{width:min(1080px,100%);margin:auto}
+    .slide-head{margin-bottom:1.1rem}.slide-head h2{font-size:clamp(1.5rem,3vw,2.25rem);line-height:1.35;margin:.55rem 0 .25rem;font-weight:900}.slide-head p{margin:0;color:var(--muted)}
+    .grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.8rem}
+    .edu-card{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius);padding:clamp(1rem,2vw,1.35rem);box-shadow:0 8px 25px rgba(31,73,104,.075)}
+    .edu-card h3{margin:0 0 .45rem;font-size:1.08rem}.edu-card p{margin:.3rem 0}.edu-card.teal{background:var(--teal-pale);border-color:#bfeae2}.edu-card.sun{background:var(--sun-pale);border-color:#f4df9e}.edu-card.blue{background:var(--blue-pale);border-color:#cfe0f7}.edu-card.purple{background:var(--purple-pale);border-color:#dcd4fb}.edu-card.coral{background:var(--coral-pale);border-color:#ffd2cf}
+    .tip{display:flex;gap:.7rem;align-items:flex-start;background:#fff;border-right:5px solid var(--teal);border-radius:15px;padding:.75rem 1rem;margin-top:.8rem;box-shadow:0 5px 15px rgba(31,73,104,.06)}.tip .tip-icon{font-size:1.25rem}
+    .big-number{direction:ltr;unicode-bidi:isolate;text-align:center;font-weight:900;font-size:clamp(1.55rem,4.5vw,3rem);letter-spacing:.05em;background:#fff;border:2px dashed #bed3e2;border-radius:20px;padding:.75rem;margin:.7rem 0;color:var(--blue);font-variant-numeric:tabular-nums}
+    .big-number .hot{background:var(--sun);color:#553f08;border-radius:9px;padding:.05em .16em;box-shadow:0 4px 0 #e7a919}
+    .class-strip{display:grid;grid-template-columns:repeat(4,1fr);direction:rtl;border-radius:20px;overflow:hidden;border:1.5px solid var(--line);background:#fff}.class-strip>div{padding:.9rem .4rem;text-align:center;border-left:1px solid var(--line)}.class-strip>div:last-child{border-left:0}.class-strip b{display:block;font-size:1rem}.class-strip small{color:var(--muted)}.class-strip .bill{background:#fff0ef}.class-strip .mill{background:#f2efff}.class-strip .thou{background:#edf5ff}.class-strip .unit{background:#e7faf6}
+    .place-table-wrap{overflow:auto;border-radius:20px;border:1.5px solid var(--line);background:#fff}.place-value-wrap{direction:ltr}.place-table{width:100%;min-width:780px;border-collapse:collapse;text-align:center}.place-table.place-value{direction:ltr}.place-table.place-value th,.place-table.place-value td{direction:rtl}.place-table th,.place-table td{border:1px solid var(--line);padding:.55rem .35rem}.place-table thead tr:first-child th{color:#fff;font-weight:800}.place-table .bill{background:var(--coral)}.place-table .mill{background:var(--purple)}.place-table .thou{background:var(--blue)}.place-table .unit{background:var(--teal)}.place-table .dec{background:#c38a22}.place-table tbody td{font-size:1.05rem;font-weight:700}.place-table .selected{background:var(--sun-pale);box-shadow:inset 0 0 0 2px var(--sun)}
+    .digit-actions{direction:ltr;display:flex;justify-content:center;flex-wrap:wrap;gap:.3rem;margin:.8rem 0}.digit-btn{width:47px;height:57px;border-radius:13px;background:#fff;border:2px solid var(--line);font-size:1.35rem;font-weight:900;box-shadow:0 5px 0 #dfe8ee;transition:.15s}.digit-btn:hover,.digit-btn.active{transform:translateY(-3px);border-color:var(--sun);background:var(--sun-pale);box-shadow:0 7px 0 #f1c95e}.comma{display:grid;place-items:end center;width:12px;font-size:1.6rem;color:var(--muted)}
+    .expansion{direction:ltr;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.45rem;margin:.8rem 0}.term{background:#fff;border:1.5px solid var(--line);padding:.45rem .7rem;border-radius:13px;font-weight:800;color:var(--blue)}.plus{color:var(--coral);font-size:1.3rem;font-weight:900}
+    .reveal-sequence{display:grid;gap:.55rem;margin:.8rem 0}.reveal-step{opacity:.16;transform:translateY(5px);filter:grayscale(.7);transition:.25s}.reveal-step.shown{opacity:1;transform:none;filter:none}
+    .step-row{display:flex;align-items:center;gap:.7rem;background:#fff;border:1.5px solid var(--line);padding:.65rem .85rem;border-radius:14px}.step-no{width:31px;height:31px;flex:0 0 auto;border-radius:10px;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:900}
+    .book-box{background:#fff;border:2px solid #f0cf68;border-radius:22px;overflow:hidden;box-shadow:0 9px 24px rgba(124,91,17,.08)}.book-title{display:flex;align-items:center;justify-content:space-between;gap:.7rem;background:var(--sun-pale);padding:.75rem 1rem;border-bottom:1px solid #f0dda4}.book-body{padding:1rem}.book-body blockquote{margin:0;font-weight:700}.options-row{display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;margin:.8rem 0}.option-chip{direction:ltr;background:var(--blue-pale);border:1.5px solid #bdd5f2;border-radius:13px;padding:.5rem .8rem;font-weight:800}.answer-box{margin-top:.75rem;background:var(--teal-pale);border:1.5px solid #a9dfd4;border-radius:15px;padding:.75rem 1rem;color:#08675e}.answer-box strong{color:var(--teal-dark)}
+    .word-classes{display:flex;direction:ltr;gap:.5rem;justify-content:center;flex-wrap:wrap;margin:.9rem 0}.word-class{min-width:145px;text-align:center;border-radius:17px;padding:.7rem .8rem;color:#fff;font-weight:800;box-shadow:0 7px 0 rgba(0,0,0,.08)}.word-class:nth-child(1){background:var(--coral)}.word-class:nth-child(2){background:var(--purple)}.word-class:nth-child(3){background:var(--blue)}.word-class:nth-child(4){background:var(--teal)}.word-class b{display:block;font-size:1.35rem}.word-class small{opacity:.9}
+    .compare-demo{direction:ltr;unicode-bidi:isolate;display:flex;align-items:center;justify-content:center;gap:.7rem;flex-wrap:wrap}.compare-chain{flex-wrap:nowrap;overflow-x:auto;justify-content:safe center;padding:.4rem .15rem}.compare-chain>*{flex:0 0 auto}.compare-num{background:#fff;border:2px solid var(--line);border-radius:16px;padding:.65rem .9rem;font-size:clamp(1.15rem,3vw,1.7rem);font-weight:900}.compare-sign{font-size:2.4rem;color:var(--coral);font-weight:900;direction:ltr;unicode-bidi:isolate}
+    .rule-list{list-style:none;padding:0;margin:.3rem 0}.rule-list li{display:flex;gap:.7rem;align-items:flex-start;padding:.45rem 0;border-bottom:1px dashed var(--line)}.rule-list li:last-child{border:0}.rule-list i{width:28px;height:28px;flex:0 0 auto;border-radius:9px;background:var(--teal-pale);color:var(--teal-dark);display:grid;place-items:center;font-style:normal;font-weight:900}
+    .axis-card{padding:1rem .6rem .3rem}.number-axis{direction:ltr;position:relative;height:95px;margin:1rem 1rem .2rem}.number-axis::before{content:"";position:absolute;left:0;right:0;top:35px;height:5px;border-radius:10px;background:linear-gradient(90deg,var(--blue),var(--teal))}.number-axis::after{content:"";position:absolute;right:-2px;top:28px;border-left:13px solid var(--teal);border-top:9px solid transparent;border-bottom:9px solid transparent}.ticks{position:absolute;left:0;right:0;top:28px;display:flex;justify-content:space-between}.tick{width:3px;height:18px;background:var(--ink);position:relative}.tick label{position:absolute;top:25px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:.73rem;color:var(--muted)}.axis-marker{position:absolute;top:18px;left:49%;transform:translateX(-50%);width:22px;height:22px;border-radius:50% 50% 50% 0;background:var(--coral);transform-origin:center;rotate:-45deg;box-shadow:0 4px 10px rgba(233,79,95,.3)}.axis-marker span{display:none}.axis-choice{position:absolute;top:17px;transform:translateX(-50%);width:31px;height:31px;border-radius:50%;background:#fff;border:3px solid var(--blue);z-index:2;font-size:.75rem;font-weight:900}.axis-choice:hover{background:var(--sun)}
+    .shift-line{direction:rtl;display:flex;align-items:center;justify-content:center;gap:.55rem;flex-wrap:wrap;margin:.7rem 0}.shift-cell{width:55px;min-height:65px;border-radius:14px;background:#fff;border:2px solid var(--line);display:grid;place-items:center;font-size:1.35rem;font-weight:900;position:relative}.shift-cell small{position:absolute;bottom:-24px;font-size:.65rem;color:var(--muted);white-space:nowrap}.arrow-left{font-size:1.15rem;color:var(--coral);font-weight:900;direction:rtl}
+    .summary-map{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem}.summary-item{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:.9rem;display:flex;gap:.65rem;align-items:center}.summary-item .ico{width:44px;height:44px;flex:0 0 auto;border-radius:14px;display:grid;place-items:center;background:var(--teal-pale);font-size:1.3rem}.summary-item:nth-child(2n) .ico{background:var(--sun-pale)}.summary-item:nth-child(3n) .ico{background:var(--purple-pale)}.summary-item strong{display:block}.summary-item small{color:var(--muted);line-height:1.5;display:block}
+    .slide-controls{min-height:76px;background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:.7rem;padding:.7rem clamp(.8rem,3vw,2rem);z-index:5}.slide-controls .next{justify-self:end}.slide-counter{min-width:105px;text-align:center;font-weight:800;color:var(--muted)}.slide-counter b{color:var(--ink)}
+
+    /* منوی بازی */
+    #gamesScreen{overflow:auto;padding-bottom:3rem}.hub-shell{width:min(1120px,94vw);margin:1.5rem auto 1.2rem}.hub-head{display:flex;align-items:end;justify-content:space-between;gap:1rem;margin-bottom:1.1rem}.hub-head h2{margin:.4rem 0 0;font-size:clamp(1.55rem,3vw,2.35rem)}
+    .game-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.9rem}.game-card{background:#fff;border:1.5px solid var(--line);border-radius:22px;padding:1rem;text-align:right;box-shadow:0 8px 25px rgba(31,73,104,.07);min-height:190px;display:flex;flex-direction:column;transition:.2s}.game-card:hover{transform:translateY(-4px);border-color:#b8d3e5;box-shadow:var(--shadow)}.game-card .game-icon{width:52px;height:52px;border-radius:17px;background:var(--teal-pale);display:grid;place-items:center;font-size:1.55rem;margin-bottom:.65rem}.game-card:nth-child(4n+2) .game-icon{background:var(--sun-pale)}.game-card:nth-child(4n+3) .game-icon{background:var(--purple-pale)}.game-card:nth-child(4n+4) .game-icon{background:var(--coral-pale)}.game-card strong{font-size:1.05rem}.game-card p{font-size:.82rem;line-height:1.7;color:var(--muted);margin:.25rem 0 auto}.game-meta{display:flex;justify-content:space-between;align-items:center;margin-top:.7rem}.level-tag{font-size:.68rem;background:#f2f6f8;padding:.2rem .5rem;border-radius:999px;color:var(--muted)}.best-tag{font-size:.7rem;color:var(--teal-dark);font-weight:800}.quiz-card{grid-column:span 2;background:linear-gradient(135deg,#153f5e,#236c8f);color:#fff;border-color:transparent}.quiz-card p,.quiz-card .best-tag{color:#d7ebf5}.quiz-card .game-icon{background:rgba(255,255,255,.16)}.quiz-card .level-tag{background:rgba(255,255,255,.12);color:#fff}
+
+    /* اجرای بازی */
+    .play-shell{flex:1;min-height:0;overflow:auto;padding:1rem clamp(.8rem,3vw,2rem) 4rem}.game-panel{width:min(900px,100%);margin:0 auto;background:rgba(255,255,255,.95);border:1.5px solid var(--line);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}.game-status{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:.8rem 1rem;background:#fbfdff;border-bottom:1px solid var(--line)}.score-pill{background:var(--sun-pale);color:#745309;padding:.4rem .75rem;border-radius:999px;font-weight:900;white-space:nowrap}.question-progress{text-align:center}.question-progress small{color:var(--muted)}.qbar{height:7px;background:#e8eff3;border-radius:10px;overflow:hidden;margin-top:.25rem}.qbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--blue));transition:.3s}.levels{display:flex;gap:.3rem;background:#eef4f7;padding:.25rem;border-radius:12px}.level-btn{padding:.35rem .62rem;border-radius:9px;background:transparent;font-size:.74rem;font-weight:800;color:var(--muted)}.level-btn.active{background:#fff;color:var(--teal-dark);box-shadow:0 3px 9px rgba(34,73,99,.1)}
+    .game-body{padding:clamp(1rem,3vw,2rem);min-height:390px;overflow-wrap:anywhere}.question-kicker{color:var(--teal-dark);font-size:.8rem;font-weight:800}.question-text{font-size:clamp(1.05rem,2.4vw,1.35rem);font-weight:800;margin:.25rem 0 .7rem}.game-visual{margin:.7rem 0}.mc-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;margin-top:1rem}.mc-option{background:#fff;border:2px solid var(--line);border-radius:16px;padding:.75rem;min-height:56px;font-weight:700;transition:.15s;overflow-wrap:anywhere}.math-text{direction:ltr;unicode-bidi:isolate;display:inline-block;max-width:100%;text-align:left;line-height:1.9}.mc-option:hover:not(:disabled){border-color:var(--blue);background:var(--blue-pale);transform:translateY(-2px)}.mc-option.correct{border-color:var(--green);background:#eaf9f2;color:#126e4b}.mc-option.wrong{border-color:var(--red);background:#fff0f1;color:#9e2735}.mc-option:disabled{cursor:default}
+    .mc-option.symbol-opt{font-size:1.8rem;font-weight:900;direction:ltr;unicode-bidi:isolate}
+    .feedback{margin-top:1rem;border-radius:16px;padding:.75rem 1rem;display:flex;gap:.7rem;align-items:flex-start;font-size:.9rem}.feedback.good{background:#eaf9f2;color:#126e4b;border:1.5px solid #afe4cd}.feedback.bad{background:#fff0f1;color:#9e2735;border:1.5px solid #fac1c8}.feedback .fb-icon{font-size:1.2rem}.feedback strong{display:block}.game-next-row{display:flex;justify-content:flex-end;margin-top:.8rem}
+    .builder-target{text-align:center;background:var(--purple-pale);border-radius:17px;padding:.8rem;font-weight:800;color:#513d9f}.card-pool,.build-slot{direction:ltr;display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;padding:.75rem;min-height:78px}.build-slot{background:#f7fafc;border:2px dashed #b9ccd8;border-radius:18px;margin-top:.7rem}.digit-card{width:48px;height:58px;border-radius:13px;background:linear-gradient(145deg,#ffe17f,#ffc857);box-shadow:0 5px 0 #dca83a;font-size:1.3rem;font-weight:900;transition:.15s}.digit-card:hover{transform:translateY(-3px)}.digit-card.built{background:#fff;box-shadow:0 4px 0 #d6e2e9;border:2px solid var(--blue)}.tool-row{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem}
+    .sort-pool,.sort-tray{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;padding:.8rem;min-height:76px}.sort-tray{background:var(--teal-pale);border:2px dashed #8cd4c7;border-radius:17px}.number-card{direction:ltr;background:#fff;border:2px solid var(--line);border-radius:13px;padding:.55rem .7rem;font-weight:900;box-shadow:0 4px 0 #dfe8ee}.number-card.selected{border-color:var(--teal)}
+    .axis-hint{text-align:center;background:var(--blue-pale);color:var(--blue);border-radius:12px;padding:.35rem .7rem;margin:.3rem auto 0;width:max-content;max-width:100%;font-size:.82rem;font-weight:800}.game-axis{direction:ltr;position:relative;margin:2.2rem 1.2rem 3.3rem;height:16px;background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:10px}.game-axis .end-label{position:absolute;top:28px;font-size:.72rem;color:var(--muted);white-space:nowrap}.game-axis .end-label.start{left:0;transform:translateX(-30%)}.game-axis .end-label.end{right:0;transform:translateX(30%)}.axis-pick{position:absolute;top:50%;transform:translate(-50%,-50%);width:38px;height:38px;padding:0;border-radius:50%;background:#fff;border:3px solid var(--blue);font-size:.7rem;line-height:1;white-space:nowrap;font-weight:900;box-shadow:0 4px 11px rgba(34,73,99,.13)}.axis-pick:hover{background:var(--sun-pale);border-color:var(--sun)}.axis-pick.correct{background:#daf6e9;border-color:var(--green)}.axis-pick.wrong{background:#ffe1e4;border-color:var(--red)}
+    .result-card{text-align:center;padding:1.2rem}.result-emoji{font-size:4rem}.result-score{font-size:clamp(2rem,7vw,4rem);font-weight:900;color:var(--teal);line-height:1.2}.stars{font-size:1.7rem;letter-spacing:.2rem;margin:.4rem}.result-card h3{font-size:1.45rem;margin:.4rem}.result-actions{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:1rem}.review-note{background:var(--sun-pale);border-radius:15px;padding:.7rem 1rem;margin:.8rem auto 0;max-width:610px;color:#6f520d}
+    .confetti{position:fixed;top:-20px;width:9px;height:16px;border-radius:3px;z-index:99;animation:fall 1.8s ease-in forwards;pointer-events:none}@keyframes fall{to{transform:translateY(105vh) rotate(520deg);opacity:.2}}
+
+    @media(max-width:900px){
+      .home-shell{grid-template-columns:1fr;padding-top:2rem}.hero-visual{display:none}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.summary-map{grid-template-columns:repeat(2,1fr)}.mc-options{grid-template-columns:1fr}
+    }
+    @media(max-width:700px){
+      .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.class-strip{grid-template-columns:repeat(2,1fr)}.class-strip>div{border-bottom:1px solid var(--line)}
+      .slide-controls{grid-template-columns:1fr auto 1fr;min-height:68px}.slide-controls .btn{font-size:.82rem;padding:.55rem .75rem}.slide-counter{min-width:auto;font-size:.8rem}
+      .topbar{min-height:62px}.topbar-title small{display:none}.topbar-title strong{font-size:.9rem}.top-actions .btn span.label{display:none}
+      .game-status{grid-template-columns:1fr 1fr}.question-progress{grid-column:1/-1;grid-row:2}.levels{justify-self:end}.mc-options{grid-template-columns:1fr}.game-body{min-height:360px}
+      .watermark{padding-left:8px;font-size:.58rem}.word-class{min-width:122px}.summary-map{grid-template-columns:1fr}
+    }
+    @media(max-width:520px){
+      .home-shell{width:92vw;align-content:start}.main-cards{grid-template-columns:1fr}.main-card{min-height:145px}.hero-copy h1{margin-top:.65rem}.home-footer{position:static;margin:1.5rem 0 -3rem}
+      .game-grid{grid-template-columns:1fr}.quiz-card{grid-column:auto}.hub-head{align-items:flex-start;flex-direction:column}.game-card{min-height:165px}
+      .levels{gap:.1rem}.level-btn{padding:.3rem .48rem}.score-pill{font-size:.78rem}.game-status{gap:.55rem}.big-number{letter-spacing:0}
+      .digit-btn{width:39px;height:49px;font-size:1.1rem}.digit-card{width:41px;height:51px}.word-class{min-width:105px;font-size:.8rem}.word-class b{font-size:1.1rem}.axis-pick{width:34px;height:34px}.game-axis{margin-left:1rem;margin-right:1rem}
+    }
+  </style>
+</head>
+<body>
+
+  <main id="app">
+    <!-- صفحه اصلی ورود -->
+    <section id="homeScreen" class="screen" aria-label="منوی اصلی">
+      <div class="home-shell">
+        <div class="hero-copy">
+          <span class="eyebrow">✦ مسیر یادگیری تعاملی</span>
+          <h1>ریاضی ششم <span>| فصل اول | درس دوم</span></h1>
+          <p class="hero-sub">یادآوری عددنویسی</p>
+          <p class="hero-desc">عددها را خانه‌به‌خانه می‌سازیم، می‌خوانیم، مقایسه می‌کنیم و جای تقریبی‌شان را روی محور پیدا می‌کنیم.</p>
+          
+          <!-- کادر مجموع امتیازات کلی دانش‌آموز -->
+          <div class="score-banner">
+            <span class="score-banner-icon">⭐</span>
+            <div>
+              <strong>مجموع امتیازات شما: <span id="homeTotalScore">۰</span> امتیاز</strong>
+              <small id="homeRankTitle">در حال شروع یادگیری</small>
+            </div>
+          </div>
+
+          <div class="main-cards">
+            <button class="main-card" id="learnCard" type="button" aria-label="ورود به اسلایدهای آموزشی">
+              <span class="big-icon">📚</span>
+              <strong>اسلایدهای آموزشی</strong>
+              <small id="learnCardText">آموزش مرحله‌ای از پایه تا تسلط</small>
+              <span class="mini-progress" aria-hidden="true"><i id="homeLearnBar"></i></span>
+            </button>
+            <button class="main-card games" id="gamesCard" type="button" aria-label="ورود به بازی‌های آموزشی">
+              <span class="big-icon">🎮</span>
+              <strong>بازی‌های آموزشی</strong>
+              <small id="gamesCardText">۸ بازی + آزمون نهایی ۱۰ سؤالی</small>
+              <span class="mini-progress" aria-hidden="true"><i id="homeGamesBar"></i></span>
+            </button>
+          </div>
+          <p class="muted" style="font-size:.76rem;margin-top:1rem">منبع محتوایی: PDF کتاب درسی ریاضی ششم، فصل اول، درس دوم، صفحات ۷ تا ۱۰</p>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="visual-card">
+            <div class="number-city">
+              <div class="tower"><span>یکان</span><div class="windows"><i>ص</i><i>د</i><i>ی</i></div></div>
+              <div class="tower"><span>هزار</span><div class="windows"><i>ص</i><i>د</i><i>ی</i></div></div>
+              <div class="tower"><span>میلیون</span><div class="windows"><i>ص</i><i>د</i><i>ی</i></div></div>
+              <div class="tower"><span>میلیارد</span><div class="windows"><i>ص</i><i>د</i><i>ی</i></div></div>
+            </div>
+            <div class="visual-caption"><span>هر رقم، یک خانه و یک ارزش دارد.</span><span>🏙️</span></div>
+          </div>
+          <span class="floating f1">۳۷ میلیارد</span><span class="floating f2">× ۱۰۰</span><span class="floating f3">صدگان هزار</span>
+        </div>
+      </div>
+      <footer class="home-footer">طراحی شده توسط محمد حسین عربی آموزگار ششم</footer>
+    </section>
+
+    <!-- بخش اسلایدهای آموزشی -->
+    <section id="learnScreen" class="screen app-view" hidden aria-label="اسلایدهای آموزشی">
+      <header class="topbar">
+        <div class="topbar-title"><span class="mark">۶</span><div><strong>یادآوری عددنویسی</strong><small id="slideTopic">نقشه راه</small></div></div>
+        <div class="top-actions">
+          <button class="btn ghost small" id="restartSlides" type="button" title="رفتن به اسلاید اول">↻ <span class="label">از ابتدا</span></button>
+          <button class="btn ghost small" data-home type="button">⌂ <span class="label">بازگشت به منوی اصلی</span></button>
+        </div>
+      </header>
+      <div class="progress-wrap" aria-label="پیشرفت یادگیری"><div class="progress-fill" id="slideProgress"></div></div>
+
+      <div class="slide-stage" id="slideStage">
+        <article class="slide active" data-topic="نقشه راه">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">شروع ماجراجویی</span><h2>می‌خواهیم چه چیزهایی یاد بگیریم؟</h2><p>در پایان، یک عدد بزرگ دیگر ترسناک نیست؛ آن را به چند بخش کوچک تبدیل می‌کنی.</p></div>
+            <div class="summary-map">
+              <div class="summary-item"><span class="ico">🏠</span><div><strong>ارزش مکانی</strong><small>خانه‌ی هر رقم را پیدا می‌کنم.</small></div></div>
+              <div class="summary-item"><span class="ico">➕</span><div><strong>گسترده‌نویسی</strong><small>عدد را به مجموع ارزش رقم‌ها می‌شکنم.</small></div></div>
+              <div class="summary-item"><span class="ico">🔤</span><div><strong>عدد و حروف</strong><small>عدد را می‌خوانم و از حروف می‌سازم.</small></div></div>
+              <div class="summary-item"><span class="ico">⚖️</span><div><strong>مقایسه و ترتیب</strong><small>از چپ به راست تصمیم می‌گیرم.</small></div></div>
+              <div class="summary-item"><span class="ico">🎯</span><div><strong>تقریب</strong><small>حذف رقم و عدد نزدیک‌تر را می‌فهمم.</small></div></div>
+              <div class="summary-item"><span class="ico">📍</span><div><strong>محور و جابه‌جایی</strong><small>جای تقریبی و اثر ×۱۰ و ×۱۰۰ را می‌بینم.</small></div></div>
+            </div>
+            <div class="tip"><span class="tip-icon">💡</span><div><strong>روش کار:</strong> کوتاه یاد بگیر، مثال را مرحله‌به‌مرحله ببین، بعد در بازی‌ها خودت امتحان کن.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="ارزش مکانی">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۱ • ارزش مکانی</span><h2>هر رقم یک «خانه» دارد</h2><p>ارزش یک رقم فقط به شکلش بستگی ندارد؛ جای آن در عدد هم مهم است.</p></div>
+            <div class="grid-2">
+              <div class="edu-card">
+                <h3>سه خانه‌ی اول</h3>
+                <div class="class-strip" style="grid-template-columns:repeat(3,1fr)"><div class="unit"><b>یکان</b><small>۱ تا</small></div><div class="thou"><b>دهگان</b><small>۱۰ تا</small></div><div class="mill"><b>صدگان</b><small>۱۰۰ تا</small></div></div>
+                <div class="big-number" dir="ltr">۵۴۲</div>
+                <p>در <b>۵۴۲</b>، رقم ۲ یعنی ۲ یکی، رقم ۴ یعنی ۴ ده‌تایی و رقم ۵ یعنی ۵ صدتایی.</p>
+              </div>
+              <div class="edu-card teal">
+                <h3>قانون طلایی</h3>
+                <p>هر بار که یک خانه به <b>سمت چپ</b> می‌رویم، ارزش رقم <b>۱۰ برابر</b> می‌شود.</p>
+                <div class="shift-line"><span class="shift-cell">۲<small>یکان</small></span><span class="arrow-left">← ×۱۰</span><span class="shift-cell">۲<small>دهگان</small></span><span class="arrow-left">← ×۱۰</span><span class="shift-cell">۲<small>صدگان</small></span></div>
+                <p style="margin-top:1.8rem;text-align:center"><b>۲ ← ۲۰ ← ۲۰۰</b></p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="طبقه‌های عدد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۱ • ارزش مکانی</span><h2>عددها در طبقه‌های سه‌تایی زندگی می‌کنند</h2><p>از سمت راست، هر سه رقم را یک طبقه می‌نامیم.</p></div>
+            <div class="class-strip">
+              <div class="unit"><b>طبقه‌ی یکان</b><small>صدگان • دهگان • یکان</small></div>
+              <div class="thou"><b>طبقه‌ی هزار</b><small>صدگان • دهگان • یکان</small></div>
+              <div class="mill"><b>طبقه‌ی میلیون</b><small>صدگان • دهگان • یکان</small></div>
+              <div class="bill"><b>طبقه‌ی میلیارد</b><small>صدگان • دهگان • یکان</small></div>
+            </div>
+            <div class="word-classes" aria-label="دسته‌بندی عدد ۳۷۰۶۷۹۱۰۵۴۲">
+              <span class="word-class"><b>۳۷</b><small>میلیارد</small></span><span class="word-class"><b>۰۶۷</b><small>میلیون</small></span><span class="word-class"><b>۹۱۰</b><small>هزار</small></span><span class="word-class"><b>۵۴۲</b><small>یکان</small></span>
+            </div>
+            <div class="tip"><span class="tip-icon">✋</span><div>برای جداکردن طبقه‌ها، همیشه از <b>راست</b> سه‌تا سه‌تا خط بکش: <span class="ltr nowrap">۳۷ | ۰۶۷ | ۹۱۰ | ۵۴۲</span></div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="جدول ارزش مکانی">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۱ • ارزش مکانی</span><h2>جدول کامل ارزش مکانی</h2><p>جدول کتاب، طبقه‌های میلیارد تا یکان و سه جای اعشاری را کنار هم نشان می‌دهد.</p></div>
+            <div class="place-table-wrap place-value-wrap">
+              <table class="place-table place-value" aria-label="جدول ارزش مکانی؛ میلیارد در سمت چپ و اعشار در سمت راست">
+                <thead><tr><th class="bill" colspan="3">میلیارد</th><th class="mill" colspan="3">میلیون</th><th class="thou" colspan="3">هزار</th><th class="unit" colspan="3">یکان</th><th class="dec" colspan="3">اعشار</th></tr><tr><th>ص</th><th>د</th><th>ی</th><th>ص</th><th>د</th><th>ی</th><th>ص</th><th>د</th><th>ی</th><th>ص</th><th>د</th><th>ی</th><th>دهم</th><th>صدم</th><th>هزارم</th></tr></thead>
+                <tbody><tr><td></td><td>۳</td><td>۷</td><td>۰</td><td>۶</td><td>۷</td><td>۹</td><td>۱</td><td>۰</td><td>۵</td><td>۴</td><td>۲</td><td></td><td></td><td></td></tr></tbody>
+              </table>
+            </div>
+            <div class="grid-3" style="margin-top:.8rem"><div class="edu-card teal"><b>سمت راست ممیز</b><p>دهم، صدم و هزارم</p></div><div class="edu-card sun"><b>ممیز</b><p>مرز بخش صحیح و اعشاری</p></div><div class="edu-card coral"><b>سمت چپ ممیز</b><p>یکان، دهگان، صدگان و طبقه‌های بزرگ‌تر</p></div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="اعشار در جدول">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۱ • ارزش مکانی</span><h2>سه خانه‌ی کوچکِ سمت راست ممیز</h2><p>در نمونه‌ی جدول کتاب، عدد <b>۱۴۸۹/۰۱۷</b> دیده می‌شود. در نوشتار کتاب «/» نقش ممیز را دارد.</p></div>
+            <div class="grid-2">
+              <div class="edu-card blue">
+                <div class="big-number" dir="ltr">۱۴۸۹/۰۱۷</div>
+                <div class="class-strip" style="grid-template-columns:repeat(3,1fr)"><div><b>۰</b><small>دهم</small></div><div><b>۱</b><small>صدم</small></div><div><b>۷</b><small>هزارم</small></div></div>
+              </div>
+              <div class="edu-card">
+                <h3>به زبان خیلی ساده</h3>
+                <ul class="rule-list"><li><i>۱</i><span>دهم یعنی یکی از ۱۰ قسمت برابر.</span></li><li><i>۲</i><span>صدم یعنی یکی از ۱۰۰ قسمت برابر.</span></li><li><i>۳</i><span>هزارم یعنی یکی از ۱۰۰۰ قسمت برابر.</span></li></ul>
+              </div>
+            </div>
+            <div class="tip"><span class="tip-icon">🧠</span><div>در این درس فقط جای این رقم‌ها را یادآوری می‌کنیم؛ محاسبات اعشاری موضوع فصل سوم است.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="ارزش یک رقم">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow practice">حالا تو پیدا کن</span><h2>روی یک رقم بزن؛ خانه‌اش را ببین</h2><p>عدد برگرفته از فعالیت کتاب است.</p></div>
+            <div class="edu-card">
+              <div class="digit-actions" id="placePicker" aria-label="عدد ۶۳۸۳۱۵۶۸">
+                <button class="digit-btn" data-place="دهگان میلیون؛ ارزش: ۶۰٬۰۰۰٬۰۰۰">۶</button><button class="digit-btn" data-place="یکان میلیون؛ ارزش: ۳٬۰۰۰٬۰۰۰">۳</button><span class="comma">٬</span><button class="digit-btn" data-place="صدگان هزار؛ ارزش: ۸۰۰٬۰۰۰">۸</button><button class="digit-btn" data-place="دهگان هزار؛ ارزش: ۳۰٬۰۰۰">۳</button><button class="digit-btn" data-place="یکان هزار؛ ارزش: ۱٬۰۰۰">۱</button><span class="comma">٬</span><button class="digit-btn" data-place="صدگان؛ ارزش: ۵۰۰">۵</button><button class="digit-btn" data-place="دهگان؛ ارزش: ۶۰">۶</button><button class="digit-btn" data-place="یکان؛ ارزش: ۸">۸</button>
+              </div>
+              <div class="answer-box" id="placePickerAnswer" aria-live="polite"><strong>یک رقم را انتخاب کن.</strong> جای آن اینجا نوشته می‌شود.</div>
+            </div>
+            <div class="tip"><span class="tip-icon">🔎</span><div>دو رقم ۳ داریم، اما ارزششان یکی نیست: یکی <b>۳٬۰۰۰٬۰۰۰</b> و دیگری <b>۳۰٬۰۰۰</b> است.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="گسترده‌نویسی">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۲ • گسترده‌نویسی</span><h2>عدد را به ارزش رقم‌ها باز می‌کنیم</h2><p>هر رقم را در ارزش خانه‌اش می‌گذاریم؛ رقم‌های صفر چیزی به مجموع اضافه نمی‌کنند.</p></div>
+            <div class="edu-card">
+              <div class="big-number" dir="ltr">۴۰۰٬۷۰۰٬۰۶۰</div>
+              <div class="expansion"><span class="term">۴۰۰٬۰۰۰٬۰۰۰</span><span class="plus">+</span><span class="term">۷۰۰٬۰۰۰</span><span class="plus">+</span><span class="term">۶۰</span></div>
+            </div>
+            <div class="grid-3" style="margin-top:.8rem"><div class="edu-card coral"><b>۴ در صدگان میلیون</b><p>۴۰۰٬۰۰۰٬۰۰۰</p></div><div class="edu-card blue"><b>۷ در صدگان هزار</b><p>۷۰۰٬۰۰۰</p></div><div class="edu-card teal"><b>۶ در دهگان</b><p>۶۰</p></div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="گسترده‌نویسی مرحله‌ای">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۲ • گسترده‌نویسی</span><h2>یک مثال، قدم‌به‌قدم</h2><p>دکمه را بزن تا هر مرحله آشکار شود.</p></div>
+            <div class="grid-2">
+              <div class="edu-card blue"><div class="big-number" dir="ltr">۳۷٬۰۶۷٬۹۱۰٬۵۴۲</div><p>این همان نمونه‌ی کامل‌شده‌ی جدول کتاب است.</p><button class="btn blue" type="button" onclick="revealNext('expandSteps',this)">نمایش مرحله‌ی بعد ←</button></div>
+              <div class="reveal-sequence" id="expandSteps">
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۱</span><span>طبقه‌ها: <b class="ltr">۳۷ | ۰۶۷ | ۹۱۰ | ۵۴۲</b></span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۲</span><span>رقم‌های غیرصفر را پیدا می‌کنیم.</span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۳</span><span class="ltr">۳۰٬۰۰۰٬۰۰۰٬۰۰۰ + ۷٬۰۰۰٬۰۰۰٬۰۰۰ + ۶۰٬۰۰۰٬۰۰۰ + ۷٬۰۰۰٬۰۰۰</span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۴</span><span class="ltr">+ ۹۰۰٬۰۰۰ + ۱۰٬۰۰۰ + ۵۰۰ + ۴۰ + ۲</span></div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: گسترده‌نویسی">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • فعالیت صفحه‌ی ۷</span><h2>از گسترده به عدد برگرد</h2><p>متن سؤال کتاب بدون تغییر آمده است؛ پاسخ پنهان است.</p></div>
+            <div class="book-box"><div class="book-title"><strong>۱ــ عبارت‌های زیر را مانند نمونه کامل کنید.</strong><span>📖</span></div><div class="book-body">
+              <div class="big-number" style="font-size:clamp(1.15rem,3vw,1.85rem)" dir="ltr">۴۰۰٬۰۰۰٬۰۰۰ + ۷۰۰٬۰۰۰ + ۶۰</div>
+              <button class="btn sun" type="button" onclick="toggleAnswer('bookExpandAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookExpandAnswer" hidden><strong>پاسخ:</strong> ۴۰۰٬۷۰۰٬۰۶۰<br>به حروف: چهارصد میلیون و هفتصد هزار و شصت.</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="عدد به حروف">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۳ • عدد به حروف</span><h2>اعداد بزرگ را چگونه بخوانیم؟</h2><p>هر طبقه را جدا می‌خوانیم و نام طبقه را بعد از آن می‌گوییم.</p></div>
+            <div class="word-classes"><span class="word-class"><b>۳۷</b><small>میلیارد</small></span><span class="word-class"><b>۰۶۷</b><small>میلیون</small></span><span class="word-class"><b>۹۱۰</b><small>هزار</small></span><span class="word-class"><b>۵۴۲</b><small>یکان</small></span></div>
+            <div class="grid-2">
+              <div class="edu-card"><h3>از بزرگ‌ترین طبقه شروع کن</h3><p><b>سی و هفت میلیارد</b> ← <b>شصت و هفت میلیون</b> ← <b>نهصد و ده هزار</b> ← <b>پانصد و چهل و دو</b></p></div>
+              <div class="edu-card teal"><h3>طبقه‌ی صفر خوانده نمی‌شود</h3><p>در گروه <b>۰۶۷</b>، صفرِ صدگان را نمی‌خوانیم و فقط می‌گوییم: <b>شصت و هفت میلیون</b>.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="خواندن مرحله‌ای">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۳ • عدد به حروف</span><h2>خواندن را خودت هدایت کن</h2><p>هر کلیک، یک طبقه را به جمله اضافه می‌کند.</p></div>
+            <div class="edu-card">
+              <div class="big-number" dir="ltr">۶۳٬۸۳۱٬۵۶۸</div>
+              <div class="reveal-sequence" id="readSteps">
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۱</span><span><b>۶۳ میلیون</b> ← شصت و سه میلیون</span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۲</span><span><b>۸۳۱ هزار</b> ← هشتصد و سی و یک هزار</span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">۳</span><span><b>۵۶۸</b> ← پانصد و شصت و هشت</span></div></div>
+                <div class="reveal-step"><div class="step-row"><span class="step-no">✓</span><span>شصت و سه میلیون و هشتصد و سی و یک هزار و پانصد و شصت و هشت</span></div></div>
+              </div>
+              <button class="btn primary" type="button" onclick="revealNext('readSteps',this)">طبقه‌ی بعدی</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="حروف به عدد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۴ • حروف به عدد</span><h2>حروف را داخل جعبه‌های طبقه‌ای بگذار</h2><p>اگر یک طبقه در جمله نیامده یا کمتر از سه رقم دارد، جای خالی آن را با صفر پر می‌کنیم.</p></div>
+            <div class="edu-card purple">
+              <p style="text-align:center;font-weight:800">پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت</p>
+              <div class="word-classes"><span class="word-class"><b>۵۳</b><small>میلیارد</small></span><span class="word-class"><b>۰۴۲</b><small>میلیون</small></span><span class="word-class"><b>۱۶۹</b><small>هزار</small></span><span class="word-class"><b>۰۷۷</b><small>یکان</small></span></div>
+              <div class="big-number" dir="ltr">۵۳٬۰۴۲٬۱۶۹٬۰۷۷</div>
+            </div>
+            <div class="tip"><span class="tip-icon">⚠️</span><div>«چهل و دو میلیون» باید در یک جعبه‌ی سه‌رقمی <b>۰۴۲</b> نوشته شود؛ «هفتاد و هفت» هم <b>۰۷۷</b> است.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: حروف به عدد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • فعالیت صفحه‌ی ۷</span><h2>کدام دانش‌آموز درست نوشته است؟</h2></div>
+            <div class="book-box"><div class="book-title"><strong>۲ــ سؤال کتاب</strong><span>📖</span></div><div class="book-body">
+              <blockquote>سه دانش‌آموز عدد پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت را به رقم نوشته‌اند، کدام یک درست است؟ اشتباه دو نفر دیگر را توضیح دهید.</blockquote>
+              <div class="options-row"><span class="option-chip">۵۳۰۴۲۱۶۹۷۷</span><span class="option-chip">۵۳۰۴۲۱۶۹۰۷۷</span><span class="option-chip">۵۳۴۲۱۶۹۷۷</span></div>
+              <button class="btn sun" type="button" onclick="toggleAnswer('bookWordsAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookWordsAnswer" hidden><strong>پاسخ:</strong> ۵۳۰۴۲۱۶۹۰۷۷ درست است، یعنی ۵۳٬۰۴۲٬۱۶۹٬۰۷۷. در دو پاسخ دیگر، صفرهای نگهدارنده‌ی طبقه‌ها درست قرار نگرفته‌اند.</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="مقایسه‌ی اعداد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۵ • مقایسه</span><h2>دو قانون برای مقایسه‌ی سریع</h2><p>علامت‌ها: <b class="ltr">&gt;</b> یعنی بزرگ‌تر، <b class="ltr">&lt;</b> یعنی کوچک‌تر و <b>=</b> یعنی برابر.</p></div>
+            <div class="grid-2">
+              <div class="edu-card blue"><h3>۱) اول تعداد رقم‌ها</h3><div class="compare-demo"><span class="compare-num">۹٬۹۹۸٬۶۵۳٬۷۴۹</span><span class="compare-sign">&lt;</span><span class="compare-num">۱۲٬۵۰۸٬۳۱۴٬۱۴۷</span></div><p>عدد سمت راست رقم بیشتری دارد؛ پس بزرگ‌تر است.</p></div>
+              <div class="edu-card teal"><h3>۲) اگر تعداد رقم برابر بود</h3><div class="compare-demo"><span class="compare-num">۳۰٬۰۲۷٬۳۰۱</span><span class="compare-sign">&lt;</span><span class="compare-num">۳۰٬۲۰۷٬۳۰۱</span></div><p>از چپ جلو می‌رویم؛ اولین تفاوت، <b>۰</b> و <b>۲</b> است.</p></div>
+            </div>
+            <div class="tip"><span class="tip-icon">🐊</span><div>دهانه‌ی باز علامت همیشه رو به عدد بزرگ‌تر است.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="مرتب‌کردن اعداد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۵ • ترتیب</span><h2>مرتب‌کردن یعنی مقایسه‌ی چند عدد</h2><p>کوچک‌ترین را پیدا کن، کنار بگذار و همین کار را برای بقیه ادامه بده.</p></div>
+            <div class="edu-card">
+              <h3>از کوچک به بزرگ</h3>
+              <div class="compare-demo compare-chain"><span class="compare-num">۱٬۴۸۹/۰۱۷</span><span class="compare-sign">&lt;</span><span class="compare-num">۴۰۰٬۷۰۰٬۰۶۰</span><span class="compare-sign">&lt;</span><span class="compare-num">۳۷٬۰۶۷٬۹۱۰٬۵۴۲</span></div>
+              <p style="text-align:center">برای بزرگ به کوچک، فقط مسیر را برعکس می‌کنیم.</p>
+            </div>
+            <div class="grid-3" style="margin-top:.8rem"><div class="edu-card"><b>گام ۱</b><p>تعداد رقم‌ها را بشمار.</p></div><div class="edu-card"><b>گام ۲</b><p>هم‌رقم‌ها را از چپ مقایسه کن.</p></div><div class="edu-card"><b>گام ۳</b><p>علامت درست را بینشان بگذار.</p></div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تقریب با حذف رقم‌ها">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۶ • تقریب</span><h2>تقریب یک میلیون «با حذف رقم‌ها»</h2><p>در کار در کلاسِ کتاب، رقم‌های سمت راستِ یکان میلیون حذف و صفر می‌شوند؛ رقم میلیون تغییر نمی‌کند.</p></div>
+            <div class="grid-2">
+              <div class="edu-card sun"><div class="big-number" dir="ltr">۷۹٬۳۴۰٬۰۰۰</div><div class="compare-demo"><span class="compare-sign">↓</span></div><div class="big-number" dir="ltr">۷۹٬۰۰۰٬۰۰۰</div><p style="text-align:center">تقریب یک میلیون با حذف رقم‌ها</p></div>
+              <div class="edu-card"><h3>فرق مهم</h3><ul class="rule-list"><li><i>✂</i><span><b>حذف رقم‌ها:</b> همه‌ی رقم‌های سمت راستِ مرتبه‌ی خواسته‌شده صفر می‌شوند.</span></li><li><i>🎯</i><span><b>عدد نزدیک‌تر:</b> بین دو عدد مرزی، نزدیک‌تر را انتخاب می‌کنیم.</span></li></ul><p class="muted">کتاب هر دو روش را در همین درس به کار می‌برد.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: تقریب جمعیت">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • کار در کلاس صفحه‌ی ۷</span><h2>جمعیت کشورها</h2></div>
+            <div class="book-box"><div class="book-title"><strong>۱ــ جدول روبه‌رو جمعیت تعدادی از کشورهای جهان را در سال ۱۳۹۵ نشان می‌دهد. جدول را کامل کنید.</strong><span>📖</span></div><div class="book-body">
+              <div class="place-table-wrap"><table class="place-table" style="min-width:650px"><thead><tr><th class="unit">کشور</th><th class="thou">جمعیت به عدد (نفر)</th><th class="mill">جمعیت به حروف (نفر)</th><th class="bill">با تقریب یک میلیون (با حذف رقم‌ها)</th></tr></thead><tbody><tr><td>ایران</td><td>۷۹۳۴۰۰۰۰</td><td>؟</td><td>؟</td></tr><tr><td>سوئد</td><td>۹۴۱۲۰۰۰</td><td>؟</td><td>؟</td></tr><tr><td>چین</td><td>۱۳۷۷۳۱۰۰۰۰</td><td>؟</td><td>؟</td></tr><tr><td>تاجیکستان</td><td>؟</td><td>هشت میلیون و دویست و هشتاد هزار</td><td>؟</td></tr></tbody></table></div>
+              <button class="btn sun" style="margin-top:.75rem" type="button" onclick="toggleAnswer('bookPopulationAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookPopulationAnswer" hidden><strong>پاسخ:</strong><br>ایران: هفتاد و نه میلیون و سیصد و چهل هزار ← ۷۹٬۰۰۰٬۰۰۰<br>سوئد: نه میلیون و چهارصد و دوازده هزار ← ۹٬۰۰۰٬۰۰۰<br>چین: یک میلیارد و سیصد و هفتاد و هفت میلیون و سیصد و ده هزار ← ۱٬۳۷۷٬۰۰۰٬۰۰۰<br>تاجیکستان: ۸٬۲۸۰٬۰۰۰ ← ۸٬۰۰۰٬۰۰۰</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="عدد نزدیک‌تر">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۶ • تقریب</span><h2>تقریب ده میلیون؛ کدام مرز نزدیک‌تر است؟</h2><p>عدد کتاب را بین دو ده‌میلیونیِ پیاپی قرار می‌دهیم.</p></div>
+            <div class="edu-card axis-card">
+              <div class="big-number" dir="ltr">۱۲۹٬۸۶۴٬۸۰۰</div>
+              <div class="number-axis"><div class="ticks"><span class="tick"><label>۱۲۰ میلیون</label></span><span class="tick"><label>۱۲۵ میلیون</label></span><span class="tick"><label>۱۳۰ میلیون</label></span></div><span class="axis-marker" style="left:98%"><span>عدد</span></span></div>
+              <div class="grid-2"><div class="edu-card coral"><b>فاصله تا ۱۲۰ میلیون</b><p>۹٬۸۶۴٬۸۰۰</p></div><div class="edu-card teal"><b>فاصله تا ۱۳۰ میلیون</b><p>۱۳۵٬۲۰۰ ← خیلی کمتر</p></div></div>
+              <p style="text-align:center;font-weight:900">پس عدد نزدیک‌تر: ۱۳۰٬۰۰۰٬۰۰۰</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: عدد نزدیک‌تر">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • صفحه‌ی ۹</span><h2>کتاب‌های منتشرشده در جهان</h2></div>
+            <div class="book-box"><div class="book-title"><strong>۳ــ در سال ۱۳۸۹، ۱۲۹۸۶۴۸۰۰ جلد کتاب در جهان منتشر شده است.</strong><span>📖</span></div><div class="book-body">
+              <blockquote>به حروف بنویسید.<br>مقدار تقریبی تعداد کتاب‌های منتشر شده در جهان را با تقریب ده میلیون (عدد نزدیک‌تر) بنویسید.<br>اگر این عدد را تقسیم بر ۱۰ کنید چه عددی به دست می‌آید؟</blockquote>
+              <button class="btn sun" style="margin-top:.75rem" type="button" onclick="toggleAnswer('bookRoundAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookRoundAnswer" hidden><strong>پاسخ:</strong><br>یکصد و بیست و نه میلیون و هشتصد و شصت و چهار هزار و هشتصد<br>تقریب ده میلیون: ۱۳۰٬۰۰۰٬۰۰۰<br>تقسیم بر ۱۰: ۱۲٬۹۸۶٬۴۸۰</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="محور اعداد">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۷ • محور اعداد</span><h2>«محل تقریبی» یعنی نزدیک‌ترین جای درست</h2><p>لازم نیست همیشه نقطه کاملاً دقیق باشد؛ اول بازه را پیدا کن، بعد نسبت فاصله را بسنج.</p></div>
+            <div class="grid-2">
+              <div class="edu-card axis-card"><h3>۱۴۹٬۰۰۰٬۶۸۰ کجا قرار می‌گیرد؟</h3><div class="number-axis"><div class="ticks"><span class="tick"><label>۰</label></span><span class="tick"><label>۱۰۰ میلیون</label></span><span class="tick"><label>۲۰۰ میلیون</label></span><span class="tick"><label>۳۰۰ میلیون</label></span></div><button class="axis-choice" style="left:16.7%" onclick="miniAxis(this,false,'axisFeedback')">الف</button><button class="axis-choice" style="left:50%" onclick="miniAxis(this,true,'axisFeedback')">ب</button><button class="axis-choice" style="left:83.3%" onclick="miniAxis(this,false,'axisFeedback')">پ</button></div><div id="axisFeedback" class="answer-box">یک نشانک را انتخاب کن.</div></div>
+              <div class="edu-card"><h3>سه پرسش راهنما</h3><ul class="rule-list"><li><i>۱</i><span>عدد بین کدام دو نشانه است؟</span></li><li><i>۲</i><span>فاصله‌ی دو نشانه به چند قسمت تقسیم شده؟</span></li><li><i>۳</i><span>عدد به کدام نشانه نزدیک‌تر است؟</span></li></ul><p>۱۴۹ میلیون تقریباً وسطِ ۱۰۰ و ۲۰۰ میلیون است؛ پس نشانک <b>ب</b>.</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: ارزش رقم">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • فعالیت صفحه‌ی ۸</span><h2>عدد مشترکان تلفن همراه</h2></div>
+            <div class="book-box"><div class="book-title"><strong>فعالیت</strong><span>📖</span></div><div class="book-body">
+              <blockquote>تعداد مشترکان تلفن همراه در سال ۱۳۹۲، ۶۳۸۳۱۵۶۸ بوده است.<br>به سؤالات زیر در مورد عدد ۶۳۸۳۱۵۶۸ پاسخ دهید.<br>چه رقمی دارای ارزش مکانی دهگان میلیون است؟<br>چه رقمی دارای ارزش مکانی صدگان هزار است؟<br>در این عدد دو رقم ۳ وجود دارد. ارزش مکانی هر کدام را مشخص کنید.<br>این عدد را به حروف بنویسید.<br>اگر این عدد را در ۱۰۰ ضرب کنیم، ارزش مکانی رقم ۱ چه تغییری می‌کند؟</blockquote>
+              <button class="btn sun" style="margin-top:.75rem" type="button" onclick="toggleAnswer('bookPlaceAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookPlaceAnswer" hidden><strong>پاسخ:</strong> دهگان میلیون: ۶؛ صدگان هزار: ۸؛ رقم‌های ۳ در یکان میلیون و دهگان هزار هستند (۳٬۰۰۰٬۰۰۰ و ۳۰٬۰۰۰).<br>به حروف: شصت و سه میلیون و هشتصد و سی و یک هزار و پانصد و شصت و هشت.<br>با ضرب در ۱۰۰، رقم ۱ از یکان هزار به صدگان هزار می‌رود.</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="ضرب در ۱۰ و ۱۰۰">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۸ • جابه‌جایی ارزش</span><h2>ضرب در ۱۰ و ۱۰۰ چه می‌کند؟</h2><p>رقم‌ها عوض نمی‌شوند؛ جای آن‌ها به سمت چپ می‌رود و ارزششان بیشتر می‌شود.</p></div>
+            <div class="grid-2">
+              <div class="edu-card blue"><h3>ضرب در ۱۰</h3><div class="shift-line"><span class="shift-cell hot">۱<small>یکان هزار</small></span><span class="arrow-left">← یک خانه</span><span class="shift-cell hot">۱<small>دهگان هزار</small></span></div><p style="margin-top:1.8rem">ارزش ۱ از ۱٬۰۰۰ به ۱۰٬۰۰۰ می‌رسد.</p></div>
+              <div class="edu-card teal"><h3>ضرب در ۱۰۰</h3><div class="shift-line"><span class="shift-cell hot">۱<small>یکان هزار</small></span><span class="arrow-left">← دو خانه</span><span class="shift-cell hot">۱<small>صدگان هزار</small></span></div><p style="margin-top:1.8rem">ارزش ۱ از ۱٬۰۰۰ به ۱۰۰٬۰۰۰ می‌رسد.</p></div>
+            </div>
+            <div class="tip"><span class="tip-icon">↔️</span><div>تقسیم بر ۱۰ برعکس است: هر رقم یک خانه به سمت راست می‌رود.</div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="اشتباه رایج">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • صفحه‌ی ۹</span><h2>صفرها را جداگانه نچسبان!</h2></div>
+            <div class="book-box"><div class="book-title"><strong>۲ــ دانش‌آموزی عدد چهار هزار و پانصد و نه را به صورت زیر نوشته است. دلیل اشتباه او را توضیح دهید.</strong><span>📖</span></div><div class="book-body">
+              <div class="big-number" dir="ltr">۴۰۰۰۵۰۰۹</div>
+              <button class="btn sun" type="button" onclick="toggleAnswer('bookMistakeAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookMistakeAnswer" hidden><strong>پاسخ:</strong> دانش‌آموز «۴۰۰۰»، «۵۰۰» و «۹» را پشت سر هم چسبانده است. باید ارزش‌ها را جمع کنیم: ۴۰۰۰ + ۵۰۰ + ۹ = <b>۴۵۰۹</b>.</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="تمرین کتاب: مقایسه و تقریب">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow book">تمرین کتاب • تمرین صفحه‌ی ۱۰</span><h2>عدد وسط به کدام نزدیک‌تر است؟</h2></div>
+            <div class="book-box"><div class="book-title"><strong>۲ــ در هر ردیف، عدد وسط به کدام یک نزدیک‌تر است؟ آن را رنگ کنید.</strong><span>📖</span></div><div class="book-body">
+              <div class="place-table-wrap"><table class="place-table" style="min-width:620px"><tbody><tr><td>۳۰٬۰۰۰٬۰۰۰٬۰۰۰</td><td class="selected">۳۸٬۶۹۳٬۴۲۷٬۰۰۰</td><td>۴۰٬۰۰۰٬۰۰۰٬۰۰۰</td></tr><tr><td>۱۹٬۰۰۰٬۰۰۰</td><td class="selected">۱۹٬۲۳۱٬۰۰۰</td><td>۲۰٬۰۰۰٬۰۰۰</td></tr><tr><td>۲۱/۰۴</td><td class="selected">۲۱/۰۴۸</td><td>۲۱/۰۵</td></tr></tbody></table></div>
+              <button class="btn sun" style="margin-top:.75rem" type="button" onclick="toggleAnswer('bookNearAnswer',this)">نمایش پاسخ</button>
+              <div class="answer-box" id="bookNearAnswer" hidden><strong>پاسخ:</strong> ردیف اول: ۴۰٬۰۰۰٬۰۰۰٬۰۰۰؛ ردیف دوم: ۱۹٬۰۰۰٬۰۰۰؛ ردیف سوم: ۲۱/۰۵.</div>
+            </div></div>
+          </div>
+        </article>
+
+        <article class="slide" data-topic="مرور نهایی">
+          <div class="slide-inner">
+            <div class="slide-head"><span class="eyebrow">۹ • مرور نهایی</span><h2>نقشه‌ی جیبیِ عددنویسی</h2><p>اگر این ۸ نکته را بلدی، آماده‌ی بازی و آزمون هستی.</p></div>
+            <div class="summary-map">
+              <div class="summary-item"><span class="ico">🏠</span><div><strong>ارزش مکانی</strong><small>هر خانه‌ی چپ، ۱۰ برابر خانه‌ی راست است.</small></div></div>
+              <div class="summary-item"><span class="ico">۳×</span><div><strong>طبقه‌ها</strong><small>از راست، سه‌تا سه‌تا: یکان، هزار، میلیون، میلیارد.</small></div></div>
+              <div class="summary-item"><span class="ico">➕</span><div><strong>گسترده</strong><small>فقط ارزش رقم‌های غیرصفر را با هم جمع کن.</small></div></div>
+              <div class="summary-item"><span class="ico">🔤</span><div><strong>خواندن</strong><small>از بزرگ‌ترین طبقه بخوان و نام طبقه را بگو.</small></div></div>
+              <div class="summary-item"><span class="ico">۰</span><div><strong>حروف به عدد</strong><small>هر طبقه را سه‌رقمی کن؛ صفرهای نگهدارنده مهم‌اند.</small></div></div>
+              <div class="summary-item"><span class="ico">⚖️</span><div><strong>مقایسه</strong><small>تعداد رقم، سپس اولین تفاوت از چپ.</small></div></div>
+              <div class="summary-item"><span class="ico">🎯</span><div><strong>تقریب</strong><small>حذف رقم‌ها را با عدد نزدیک‌تر اشتباه نگیر.</small></div></div>
+              <div class="summary-item"><span class="ico">←</span><div><strong>×۱۰ و ×۱۰۰</strong><small>رقم یک یا دو خانه به چپ می‌رود.</small></div></div>
+            </div>
+            <div class="tip"><span class="tip-icon">🏁</span><div><strong>آماده‌ای؟</strong> حالا به بازی‌های آموزشی برو و در پایان، آزمون ۱۰ سؤالی را انجام بده.</div></div>
+            <div style="text-align:center;margin-top:.8rem"><button class="btn primary" type="button" id="goGamesFromSlides">رفتن به بازی‌ها 🎮</button></div>
+          </div>
+        </article>
+      </div>
+
+      <nav class="slide-controls" aria-label="کنترل اسلایدها">
+        <button class="btn" id="prevSlide" type="button">→ قبلی</button>
+        <div class="slide-counter"><b id="slideCurrent">۱</b> از <span id="slideTotal">۲۵</span></div>
+        <button class="btn primary next" id="nextSlide" type="button">بعدی ←</button>
+      </nav>
+      <div class="watermark">طراحی شده توسط محمد حسین عربی آموزگار ششم</div>
+    </section>
+
+    <!-- بخش منوی بازی‌های آموزشی -->
+    <section id="gamesScreen" class="screen" hidden aria-label="بازی‌های آموزشی">
+      <header class="topbar">
+        <div class="topbar-title"><span class="mark">🎮</span><div><strong>بازی‌های آموزشی</strong><small>تمرین کوتاه، بازخورد فوری</small></div></div>
+        <button class="btn ghost small" data-home type="button">⌂ <span class="label">بازگشت به منوی اصلی</span></button>
+      </header>
+      <div class="hub-shell">
+        <div class="hub-head"><div><span class="eyebrow">۸ بازی مهارتی</span><h2>انتخاب کن و امتیاز بگیر!</h2><p class="muted" style="margin:0">هر پاسخ درست ۱۰ امتیاز به مجموع امتیازاتت در صفحه اصلی اضافه می‌کند.</p></div><span class="score-pill" id="hubComplete">۰ بازی کامل‌شده</span></div>
+        <div class="game-grid">
+          <button class="game-card" data-game="builder" type="button"><span class="game-icon">🧩</span><strong>عدد را بساز</strong><p>کارت‌های رقم را لمس کن و عدد گفته‌شده را بساز.</p><span class="game-meta"><span class="level-tag">آسان • متوسط • سخت</span><span class="best-tag" data-best="builder">بهترین: —</span></span></button>
+          <button class="game-card" data-game="place" type="button"><span class="game-icon">🏠</span><strong>جای درست رقم</strong><p>رقم رنگی در کدام ارزش مکانی نشسته است؟</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="place">بهترین: —</span></span></button>
+          <button class="game-card" data-game="words" type="button"><span class="game-icon">🔤</span><strong>عدد به حروف</strong><p>نوشتار درست هر عدد را از میان گزینه‌ها شکار کن.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="words">بهترین: —</span></span></button>
+          <button class="game-card" data-game="compare" type="button"><span class="game-icon">⚖️</span><strong>بزرگ‌تر یا کوچک‌تر؟</strong><p>بین دو عدد، علامت &gt; یا &lt; یا = را بگذار.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="compare">بهترین: —</span></span></button>
+          <button class="game-card" data-game="approx" type="button"><span class="game-icon">🎯</span><strong>تقریب سریع</strong><p>حذف رقم‌ها و عدد نزدیک‌تر را درست تشخیص بده.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="approx">بهترین: —</span></span></button>
+          <button class="game-card" data-game="sort" type="button"><span class="game-icon">↕️</span><strong>مرتب‌سازی اعداد</strong><p>کارت‌ها را به ترتیب خواسته‌شده لمس کن.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="sort">بهترین: —</span></span></button>
+          <button class="game-card" data-game="axis" type="button"><span class="game-icon">📍</span><strong>پیدا کردن روی محور</strong><p>نشانک نزدیک به محل عدد را انتخاب کن.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="axis">بهترین: —</span></span></button>
+          <button class="game-card" data-game="expanded" type="button"><span class="game-icon">➕</span><strong>گسترده‌نویسی سریع</strong><p>عدد و گسترده‌ی درست را به هم وصل کن.</p><span class="game-meta"><span class="level-tag">۳ سطح</span><span class="best-tag" data-best="expanded">بهترین: —</span></span></button>
+          <button class="game-card quiz-card" data-game="quiz" type="button"><span class="game-icon">🏆</span><strong>آزمون نهایی ۱۰ سؤالی</strong><p>همه‌ی مهارت‌های درس را بسنج و نشان تسلط بگیر.</p><span class="game-meta"><span class="level-tag">۱۰ سؤال • ۱۰۰ امتیاز</span><span class="best-tag" data-best="quiz">بهترین: —</span></span></button>
+        </div>
+      </div>
+      <div class="watermark">طراحی شده توسط محمد حسین عربی آموزگار ششم</div>
+    </section>
+
+    <!-- بخش محیط اجرای بازی -->
+    <section id="playScreen" class="screen app-view" hidden aria-label="اجرای بازی">
+      <header class="topbar">
+        <div class="topbar-title"><span class="mark" id="playIcon">🎮</span><div><strong id="playTitle">بازی</strong><small id="playSubtitle">مهارت عددنویسی</small></div></div>
+        <button class="btn ghost small" id="backToGames" type="button">☰ <span class="label">فهرست بازی‌ها</span></button>
+      </header>
+      <div class="play-shell">
+        <div class="game-panel">
+          <div class="game-status">
+            <span class="score-pill">امتیاز این دور: <b id="gameScore">۰</b></span>
+            <div class="question-progress"><small id="questionCount">سؤال ۱ از ۵</small><div class="qbar"><i id="questionBar"></i></div></div>
+            <div class="levels" id="levelChooser" aria-label="انتخاب سطح"><button class="level-btn active" data-level="easy">آسان</button><button class="level-btn" data-level="medium">متوسط</button><button class="level-btn" data-level="hard">سخت</button></div>
+          </div>
+          <div class="game-body" id="gameBody" aria-live="polite"></div>
+        </div>
+      </div>
+      <div class="watermark">طراحی شده توسط محمد حسین عربی آموزگار ششم</div>
+    </section>
+  </main>
+
+  <script>
+  'use strict';
+  (() => {
+    const $ = (s,root=document) => root.querySelector(s);
+    const $$ = (s,root=document) => [...root.querySelectorAll(s)];
+    const faDigits = '۰۱۲۳۴۵۶۷۸۹';
+    const toFa = value => String(value).replace(/\d/g,d=>faDigits[d]);
+    const faNumberText = value => toFa(value).replace(/,/g,'٬').replace(/\./g,'/');
+    const shuffle = arr => { const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+    const esc = s => String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+    const defaultProgress = {seenSlides:[],lastSlide:0,bestScores:{},completed:[],totalScore:0};
+    let progress = loadProgress();
+    function loadProgress(){
+      try{
+        return {...defaultProgress,...JSON.parse(localStorage.getItem('arabiMath6NumberWriting')||'{}')};
+      }catch(e){
+        return {...defaultProgress};
+      }
+    }
+    function saveProgress(){
+      try{
+        localStorage.setItem('arabiMath6NumberWriting',JSON.stringify(progress));
+      }catch(e){}
+      updateHomeStats();
+    }
+
+    const screens = $$('.screen');
+    function showScreen(id){screens.forEach(s=>s.hidden=s.id!==id);window.scrollTo(0,0)}
+    function goHome(){showScreen('homeScreen');updateHomeStats()}
+    $$('[data-home]').forEach(b=>b.addEventListener('click',goHome));
+
+    /* اسلایدها */
+    const slides = $$('.slide'); 
+    let slideIndex = Math.min(progress.lastSlide||0, slides.length-1);
+    $('#slideTotal').textContent = toFa(slides.length);
+    function openLearn(){showScreen('learnScreen');showSlide(slideIndex)}
+    function showSlide(index){
+      slideIndex = Math.max(0,Math.min(index,slides.length-1));
+      slides.forEach((s,i)=>s.classList.toggle('active',i===slideIndex));
+      $('#slideCurrent').textContent = toFa(slideIndex+1); 
+      $('#slideTopic').textContent = slides[slideIndex].dataset.topic||'';
+      $('#slideProgress').style.width = ((slideIndex+1)/slides.length*100)+'%';
+      $('#prevSlide').disabled = slideIndex===0; 
+      $('#prevSlide').style.opacity = slideIndex===0?'.45':'1';
+      $('#nextSlide').textContent = slideIndex===slides.length-1?'پایان آموزش ✓':'بعدی ←';
+      $('#slideStage').scrollTop = 0;
+      if(!progress.seenSlides.includes(slideIndex)) progress.seenSlides.push(slideIndex);
+      progress.lastSlide = Math.max(progress.lastSlide||0, slideIndex);
+      saveProgress();
+    }
+    $('#learnCard').addEventListener('click',openLearn);
+    $('#nextSlide').addEventListener('click',()=>{if(slideIndex===slides.length-1)openGames();else showSlide(slideIndex+1)});
+    $('#prevSlide').addEventListener('click',()=>showSlide(slideIndex-1));
+    $('#restartSlides').addEventListener('click',()=>showSlide(0));
+    $('#goGamesFromSlides').addEventListener('click',openGames);
+    document.addEventListener('keydown',e=>{
+      if($('#learnScreen').hidden) return;
+      if(['INPUT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)) return;
+      if(e.key==='ArrowLeft') showSlide(slideIndex+1);
+      if(e.key==='ArrowRight') showSlide(slideIndex-1);
+    });
+
+    window.toggleAnswer=(id,btn)=>{const el=document.getElementById(id);el.hidden=!el.hidden;btn.textContent=el.hidden?'نمایش پاسخ':'پنهان‌کردن پاسخ'};
+    window.revealNext=(id,btn)=>{const box=document.getElementById(id),next=$$('.reveal-step:not(.shown)',box)[0];if(next)next.classList.add('shown');if(!$$('.reveal-step:not(.shown)',box).length)btn.textContent='همه‌ی مرحله‌ها دیده شد ✓'};
+    $$('#placePicker .digit-btn').forEach(btn=>btn.addEventListener('click',()=>{$$('#placePicker .digit-btn').forEach(x=>x.classList.remove('active'));btn.classList.add('active');$('#placePickerAnswer').innerHTML='<strong>رقم '+btn.textContent+':</strong> '+btn.dataset.place}));
+    window.miniAxis=(btn,correct,feedbackId)=>{const p=btn.parentElement;$$('.axis-choice',p).forEach(x=>{x.disabled=true;x.style.opacity='.55'});btn.style.opacity='1';btn.style.background=correct?'#daf6e9':'#ffe1e4';const f=document.getElementById(feedbackId);f.innerHTML=correct?'<strong>آفرین!</strong> ۱۴۹ میلیون تقریباً در میانه‌ی ۱۰۰ و ۲۰۰ میلیون است.':'<strong>دوباره نگاه کن:</strong> ۱۴۹ میلیون باید بین ۱۰۰ و ۲۰۰ میلیون باشد.'};
+
+    /* فراداده و سؤالات بازی‌ها */
+    const meta={
+      builder:{title:'عدد را بساز',icon:'🧩',subtitle:'کارت‌های رقم'},
+      place:{title:'جای درست رقم',icon:'🏠',subtitle:'ارزش مکانی'},
+      words:{title:'عدد به حروف',icon:'🔤',subtitle:'خواندن عددهای بزرگ'},
+      compare:{title:'بزرگ‌تر یا کوچک‌تر؟',icon:'⚖️',subtitle:'مقایسه از چپ'},
+      approx:{title:'تقریب سریع',icon:'🎯',subtitle:'حذف رقم و عدد نزدیک‌تر'},
+      sort:{title:'مرتب‌سازی اعداد',icon:'↕️',subtitle:'کوچک به بزرگ و برعکس'},
+      axis:{title:'پیدا کردن روی محور',icon:'📍',subtitle:'محل تقریبی'},
+      expanded:{title:'گسترده‌نویسی سریع',icon:'➕',subtitle:'مجموع ارزش رقم‌ها'},
+      quiz:{title:'آزمون نهایی',icon:'🏆',subtitle:'۱۰ سؤال از کل درس'}
+    };
+
+    const q=(question,options,answer,explain,visual='',topic='')=>({kind:'mc',question,options,answer,explain,visual,topic});
+    const digitVisual=(raw,hotIndex)=>{let n=0,out='';for(const c of raw){if(/\d/.test(c)){out+=`<span class="${n===hotIndex?'hot':''}">${toFa(c)}</span>`;n++;}else out+=c===','?'٬':c;}return `<div class="big-number" dir="ltr">${out}</div>`};
+    const numberVisual=raw=>`<div class="big-number" dir="ltr">${faNumberText(raw)}</div>`;
+
+    const builders={
+      easy:[['4509','چهار هزار و پانصد و نه'],['8200','هشت هزار و دویست'],['7052','هفت هزار و پنجاه و دو'],['40060','چهل هزار و شصت'],['102354','یکصد و دو هزار و سیصد و پنجاه و چهار']],
+      medium:[['63831568','شصت و سه میلیون و هشتصد و سی و یک هزار و پانصد و شصت و هشت'],['12986400','دوازده میلیون و نهصد و هشتاد و شش هزار و چهارصد'],['79340000','هفتاد و نه میلیون و سیصد و چهل هزار'],['3429873','سه میلیون و چهارصد و بیست و نه هزار و هشتصد و هفتاد و سه'],['400700060','چهارصد میلیون و هفتصد هزار و شصت']],
+      hard:[['37067910542','سی و هفت میلیارد و شصت و هفت میلیون و نهصد و ده هزار و پانصد و چهل و دو'],['53042169077','پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت'],['129864800','یکصد و بیست و نه میلیون و هشتصد و شصت و چهار هزار و هشتصد'],['1377310000','یک میلیارد و سیصد و هفتاد و هفت میلیون و سیصد و ده هزار'],['630473120000','ششصد و سی میلیارد و چهارصد و هفتاد و سه میلیون و یکصد و بیست هزار']]
+    };
+    Object.keys(builders).forEach(l=>builders[l]=builders[l].map(([target,words])=>({kind:'builder',target,words,topic:'عدد و حروف'})));
+
+    const banks={
+      place:{
+        easy:[q('رقم رنگی در چه مرتبه‌ای است؟',['صدگان','دهگان','هزارگان'],'صدگان','رقم ۲ در خانه‌ی صدگان است.',digitVisual('45,209',2),'ارزش مکانی'),q('خانه‌ی رقم رنگی را پیدا کن.',['یکان','دهگان','صدگان'],'دهگان','رقم ۳ یک خانه مانده به یکان است.',digitVisual('12,034',3),'ارزش مکانی'),q('رقم رنگی در چه مرتبه‌ای است؟',['هزارگان','صدگان','دهگان'],'هزارگان','رقم ۶ در عدد ۶۳۲۵، هزارگان است.',digitVisual('6,325',0),'ارزش مکانی'),q('رقم رنگی کجا نشسته؟',['یکان','صدگان','دهگان'],'یکان','آخرین رقم سمت راست، یکان است.',digitVisual('950',2),'ارزش مکانی'),q('خانه‌ی رقم رنگی چیست؟',['دهگان','یکان هزار','صدگان'],'یکان هزار','رقم ۷ در ۷۰۸۱، یکان هزار است.',digitVisual('7,081',0),'ارزش مکانی')],
+        medium:[q('رقم رنگی چه ارزش مکانی دارد؟',['دهگان میلیون','یکان میلیون','صدگان هزار'],'دهگان میلیون','۶ در نخستین خانه‌ی عدد هشت‌رقمی، دهگان میلیون است.',digitVisual('63,831,568',0),'ارزش مکانی'),q('رقم رنگی چه ارزش مکانی دارد؟',['دهگان هزار','صدگان هزار','یکان میلیون'],'صدگان هزار','۸ در صدگان هزار قرار دارد.',digitVisual('63,831,568',2),'ارزش مکانی'),q('در عدد تماشاگران، رقم رنگی کجاست؟',['دهگان هزار','هزارگان','صدگان هزار'],'دهگان هزار','۲ ارزش مکانی دهگان هزار دارد.',digitVisual('3,429,873',2),'ارزش مکانی'),q('رقم رنگی چه مرتبه‌ای دارد؟',['یکان میلیون','صدگان هزار','دهگان میلیون'],'یکان میلیون','۳ در یکان میلیون است.',digitVisual('3,178,856',0),'ارزش مکانی'),q('رقم رنگی در کدام خانه است؟',['صدگان','دهگان','هزارگان'],'صدگان','۴ در صدگان است.',digitVisual('3,359,439',4),'ارزش مکانی')],
+        hard:[q('رقم رنگی چه ارزش مکانی دارد؟',['یکان میلیارد','دهگان میلیارد','صدگان میلیون'],'یکان میلیارد','۷ در یکان میلیارد است.',digitVisual('37,067,910,542',1),'ارزش مکانی'),q('رقم رنگی کجاست؟',['دهگان میلیون','صدگان میلیون','یکان میلیون'],'دهگان میلیون','۴ در دهگان میلیون است.',digitVisual('53,042,169,077',3),'ارزش مکانی'),q('رقم رنگی در چه مرتبه‌ای است؟',['صدگان میلیارد','دهگان میلیارد','یکان میلیارد'],'صدگان میلیارد','۶ در صدگان میلیارد است.',digitVisual('630,473,120,000',0),'ارزش مکانی'),q('رقم رنگی چه مرتبه‌ای دارد؟',['صدگان میلیون','دهگان میلیون','یکان میلیارد'],'صدگان میلیون','۱ در صدگان میلیون است.',digitVisual('129,864,800',0),'ارزش مکانی'),q('رقم رنگی چه ارزش مکانی دارد؟',['صدگان میلیون','دهگان میلیون','یکان میلیون'],'صدگان میلیون','۳ بعد از طبقه‌ی میلیارد، صدگان میلیون است.',digitVisual('1,377,310,000',1),'ارزش مکانی')]
+      },
+      words:{
+        easy:[q('نوشتار درست این عدد کدام است؟',['چهار هزار و پانصد و نه','چهار هزار و پنجاه و نه','چهل و پنج هزار و نه'],'چهار هزار و پانصد و نه','۴۵۰۹ = ۴۰۰۰ + ۵۰۰ + ۹.',numberVisual('4,509'),'عدد به حروف'),q('کدام گزینه درست است؟',['هشت هزار و دویست','هشتاد و دو هزار','هشت هزار و بیست'],'هشت هزار و دویست','طبقه‌ی هزار ۸ و طبقه‌ی یکان ۲۰۰ است.',numberVisual('8,200'),'عدد به حروف'),q('عدد را بخوان.',['هفت هزار و پنجاه و دو','هفتاد هزار و پنجاه و دو','هفت هزار و پانصد و دو'],'هفت هزار و پنجاه و دو','صفرِ صدگان خوانده نمی‌شود.',numberVisual('7,052'),'عدد به حروف'),q('نوشتار درست کدام است؟',['چهل هزار و شصت','چهار هزار و شش','چهل هزار و ششصد'],'چهل هزار و شصت','۴۰٬۰۶۰ یعنی ۴۰ هزار و ۶۰.',numberVisual('40,060'),'عدد به حروف'),q('عدد را درست بخوان.',['یکصد و دو هزار و سیصد و پنجاه و چهار','دوازده هزار و سیصد و پنجاه و چهار','یکصد و بیست هزار و سیصد و پنجاه و چهار'],'یکصد و دو هزار و سیصد و پنجاه و چهار','۱۰۲ هزار، سپس ۳۵۴.',numberVisual('102,354'),'عدد به حروف')],
+        medium:[q('نوشتار درست کدام است؟',['شصت و سه میلیون و هشتصد و سی و یک هزار و پانصد و شصت و هشت','ششصد و سی و هشت میلیون و سی و یک هزار و پانصد و شصت و هشت','شصت و سه میلیون و هشتاد و سه هزار و پانصد و شصت و هشت'],'شصت و سه میلیون و هشتصد و سی و یک هزار و پانصد و شصت و هشت','طبقه‌ها: ۶۳ | ۸۳۱ | ۵۶۸.',numberVisual('63,831,568'),'عدد به حروف'),q('این عدد چگونه خوانده می‌شود؟',['هفتاد و نه میلیون و سیصد و چهل هزار','هفتصد و نود و سه میلیون و چهل هزار','هفتاد و نه میلیون و سی و چهار هزار'],'هفتاد و نه میلیون و سیصد و چهل هزار','طبقه‌ها: ۷۹ | ۳۴۰ | ۰۰۰.',numberVisual('79,340,000'),'عدد به حروف'),q('گزینه‌ی درست را پیدا کن.',['دوازده میلیون و نهصد و هشتاد و شش هزار و چهارصد','یکصد و بیست و نه میلیون و هشتاد و شش هزار و چهارصد','دوازده میلیون و نود و هشت هزار و ششصد و چهار'],'دوازده میلیون و نهصد و هشتاد و شش هزار و چهارصد','طبقه‌ها: ۱۲ | ۹۸۶ | ۴۰۰.',numberVisual('12,986,400'),'عدد به حروف'),q('عدد را بخوان.',['سه میلیون و چهارصد و بیست و نه هزار و هشتصد و هفتاد و سه','سی و چهار میلیون و دویست و نه هزار و هشتصد و هفتاد و سه','سه میلیون و چهل و دو هزار و نهصد و هشتاد و هفت'],'سه میلیون و چهارصد و بیست و نه هزار و هشتصد و هفتاد و سه','طبقه‌ها: ۳ | ۴۲۹ | ۸۷۳.',numberVisual('3,429,873'),'عدد به حروف'),q('نوشتار درست کدام است؟',['چهارصد میلیون و هفتصد هزار و شصت','چهارصد و هفت میلیون و شصت هزار','چهار میلیارد و هفتصد میلیون و شصت'],'چهارصد میلیون و هفتصد هزار و شصت','طبقه‌ها: ۴۰۰ | ۷۰۰ | ۰۶۰.',numberVisual('400,700,060'),'عدد به حروف')],
+        hard:[q('عدد نمونه‌ی کتاب را بخوان.',['سی و هفت میلیارد و شصت و هفت میلیون و نهصد و ده هزار و پانصد و چهل و دو','سیصد و هفتاد میلیارد و شصت و هفت میلیون و نود و یک هزار و پانصد و چهل و دو','سی و هفت میلیارد و ششصد و هفت میلیون و نهصد و ده هزار و پنجاه و دو'],'سی و هفت میلیارد و شصت و هفت میلیون و نهصد و ده هزار و پانصد و چهل و دو','طبقه‌ها: ۳۷ | ۰۶۷ | ۹۱۰ | ۵۴۲.',numberVisual('37,067,910,542'),'عدد به حروف'),q('کدام نوشتار درست است؟',['پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت','پنج میلیارد و سیصد و چهار میلیون و دویست و شانزده هزار و نهصد و هفتاد و هفت','پنجاه و سه میلیارد و چهارصد و بیست و یک میلیون و ششصد و نه هزار و هفتاد و هفت'],'پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت','صفرهای ۰۴۲ و ۰۷۷ هنگام خواندن گفته نمی‌شوند.',numberVisual('53,042,169,077'),'عدد به حروف'),q('عدد را درست بخوان.',['یکصد و بیست و نه میلیون و هشتصد و شصت و چهار هزار و هشتصد','دوازده میلیارد و نهصد و هشتاد و شش میلیون و چهارصد و هشت هزار','یکصد و بیست و نه میلیون و هشتاد و شش هزار و چهارصد و هشت'],'یکصد و بیست و نه میلیون و هشتصد و شصت و چهار هزار و هشتصد','طبقه‌ها: ۱۲۹ | ۸۶۴ | ۸۰۰.',numberVisual('129,864,800'),'عدد به حروف'),q('نوشتار درست کدام است؟',['یک میلیارد و سیصد و هفتاد و هفت میلیون و سیصد و ده هزار','سیزده میلیارد و هفتصد و هفتاد و سه میلیون و یکصد هزار','یک میلیارد و سی و هفت میلیون و هفتصد و سی و یک هزار'],'یک میلیارد و سیصد و هفتاد و هفت میلیون و سیصد و ده هزار','طبقه‌ها: ۱ | ۳۷۷ | ۳۱۰ | ۰۰۰.',numberVisual('1,377,310,000'),'عدد به حروف'),q('عدد را بخوان.',['ششصد و سی میلیارد و چهارصد و هفتاد و سه میلیون و یکصد و بیست هزار','شصت و سه میلیارد و چهل و هفت میلیون و سیصد و دوازده هزار','ششصد و سه میلیارد و چهارصد و هفتاد و سه میلیون و دوازده هزار'],'ششصد و سی میلیارد و چهارصد و هفتاد و سه میلیون و یکصد و بیست هزار','طبقه‌ها: ۶۳۰ | ۴۷۳ | ۱۲۰ | ۰۰۰.',numberVisual('630,473,120,000'),'عدد به حروف')]
+      },
+      approx:{
+        easy:[q('با تقریب یک میلیون و «حذف رقم‌ها» کدام است؟',['۹٬۰۰۰٬۰۰۰','۱۰٬۰۰۰٬۰۰۰','۹٬۴۰۰٬۰۰۰'],'۹٬۰۰۰٬۰۰۰','رقم‌های پایین‌تر از میلیون صفر می‌شوند.',numberVisual('9,412,000'),'تقریب'),q('با حذف رقم‌ها تا یک میلیون:',['۷۹٬۰۰۰٬۰۰۰','۸۰٬۰۰۰٬۰۰۰','۷۹٬۳۴۰٬۰۰۰'],'۷۹٬۰۰۰٬۰۰۰','در روش حذف، بالا گرد نمی‌کنیم.',numberVisual('79,340,000'),'تقریب'),q('تقریب یک میلیون با حذف رقم‌ها:',['۸٬۰۰۰٬۰۰۰','۹٬۰۰۰٬۰۰۰','۸٬۲۸۰٬۰۰۰'],'۸٬۰۰۰٬۰۰۰','۲۸۰ هزار حذف می‌شود.',numberVisual('8,280,000'),'تقریب'),q('با حذف رقم‌ها تا میلیون:',['۶۳٬۰۰۰٬۰۰۰','۶۴٬۰۰۰٬۰۰۰','۶۳٬۸۰۰٬۰۰۰'],'۶۳٬۰۰۰٬۰۰۰','۸۳۱٬۵۶۸ حذف و صفر می‌شود.',numberVisual('63,831,568'),'تقریب'),q('با حذف رقم‌ها تا میلیون:',['۱۲٬۰۰۰٬۰۰۰','۱۳٬۰۰۰٬۰۰۰','۱۲٬۹۰۰٬۰۰۰'],'۱۲٬۰۰۰٬۰۰۰','فقط طبقه‌ی میلیون نگه داشته می‌شود.',numberVisual('12,986,400'),'تقریب')],
+        medium:[q('نزدیک‌ترین ده میلیون کدام است؟',['۱۲۰٬۰۰۰٬۰۰۰','۱۳۰٬۰۰۰٬۰۰۰','۱۲۹٬۰۰۰٬۰۰۰'],'۱۳۰٬۰۰۰٬۰۰۰','تا ۱۳۰ میلیون فقط ۱۳۵٬۲۰۰ فاصله دارد.',numberVisual('129,864,800'),'تقریب'),q('نزدیک‌ترین ده میلیون:',['۱۲۰٬۰۰۰٬۰۰۰','۱۳۰٬۰۰۰٬۰۰۰','۱۲۴٬۰۰۰٬۰۰۰'],'۱۲۰٬۰۰۰٬۰۰۰','۱۲۴ میلیون به ۱۲۰ میلیون نزدیک‌تر است.',numberVisual('124,000,000'),'تقریب'),q('نزدیک‌ترین ده میلیون:',['۶۰٬۰۰۰٬۰۰۰','۷۰٬۰۰۰٬۰۰۰','۶۳٬۰۰۰٬۰۰۰'],'۶۰٬۰۰۰٬۰۰۰','۶۳٫۸ میلیون به ۶۰ میلیون نزدیک‌تر است.',numberVisual('63,831,568'),'تقریب'),q('نزدیک‌ترین ده میلیون:',['۸۰٬۰۰۰٬۰۰۰','۹۰٬۰۰۰٬۰۰۰','۸۵٬۰۰۰٬۰۰۰'],'۹۰٬۰۰۰٬۰۰۰','۸۵٫۹ میلیون به ۹۰ میلیون نزدیک‌تر است.',numberVisual('85,961,077'),'تقریب'),q('نزدیک‌ترین ده میلیون:',['۱۴۰٬۰۰۰٬۰۰۰','۱۵۰٬۰۰۰٬۰۰۰','۱۶۰٬۰۰۰٬۰۰۰'],'۱۵۰٬۰۰۰٬۰۰۰','۱۴۹ میلیون تقریباً ۱۵۰ میلیون است.',numberVisual('149,000,680'),'تقریب')],
+        hard:[q('در ردیف کتاب، عدد وسط به کدام نزدیک‌تر است؟',['۳۰٬۰۰۰٬۰۰۰٬۰۰۰','۴۰٬۰۰۰٬۰۰۰٬۰۰۰','۳۵٬۰۰۰٬۰۰۰٬۰۰۰'],'۴۰٬۰۰۰٬۰۰۰٬۰۰۰','۳۸٫۷ میلیارد به ۴۰ میلیارد نزدیک‌تر است.',numberVisual('38,693,427,000'),'تقریب'),q('عدد وسط به کدام نزدیک‌تر است؟',['۱۹٬۰۰۰٬۰۰۰','۲۰٬۰۰۰٬۰۰۰','۱۹٬۵۰۰٬۰۰۰'],'۱۹٬۰۰۰٬۰۰۰','فاصله تا ۱۹ میلیون کمتر است.',numberVisual('19,231,000'),'تقریب'),q('عدد وسط به کدام نزدیک‌تر است؟',['۲۱/۰۴','۲۱/۰۵','۲۱/۰۴۵'],'۲۱/۰۵','فاصله‌ی ۲۱/۰۴۸ تا ۲۱/۰۵ برابر ۰/۰۰۲ است.',numberVisual('21/048'),'تقریب'),q('با حذف رقم‌ها تا یک میلیون:',['۱٬۳۷۷٬۰۰۰٬۰۰۰','۱٬۳۷۸٬۰۰۰٬۰۰۰','۱٬۳۰۰٬۰۰۰٬۰۰۰'],'۱٬۳۷۷٬۰۰۰٬۰۰۰','۳۱۰ هزار حذف می‌شود.',numberVisual('1,377,310,000'),'تقریب'),q('نزدیک‌ترین ده میلیون:',['۶۷۰٬۰۰۰٬۰۰۰','۶۸۰٬۰۰۰٬۰۰۰','۶۷۵٬۰۰۰٬۰۰۰'],'۶۸۰٬۰۰۰٬۰۰۰','۶۷۵٬۷۲۵٬۴۰۲ به ۶۸۰ میلیون نزدیک‌تر است.',numberVisual('675,725,402'),'تقریب')]
+      },
+      expanded:{
+        easy:[q('گسترده‌ی درست کدام است؟',['۴۰۰۰ + ۵۰۰ + ۹','۴۰۰۰ + ۵۰ + ۹','۴۰۰ + ۵۰۰ + ۹'],'۴۰۰۰ + ۵۰۰ + ۹','هر رقم با ارزش خانه‌اش نوشته می‌شود.',numberVisual('4,509'),'گسترده‌نویسی'),q('گسترده‌ی درست:',['۸۰۰۰ + ۲۰۰','۸۰۰ + ۲۰۰','۸۰۰۰ + ۲۰'],'۸۰۰۰ + ۲۰۰','۸ در هزارگان و ۲ در صدگان است.',numberVisual('8,200'),'گسترده‌نویسی'),q('کدام مجموع درست است؟',['۷۰۰۰ + ۵۰ + ۲','۷۰۰۰ + ۵۰۰ + ۲','۷۰۰ + ۵۰ + ۲'],'۷۰۰۰ + ۵۰ + ۲','صفرِ صدگان جمله‌ای ندارد.',numberVisual('7,052'),'گسترده‌نویسی'),q('گسترده‌ی درست:',['۴۰٬۰۰۰ + ۶۰','۴٬۰۰۰ + ۶۰','۴۰٬۰۰۰ + ۶۰۰'],'۴۰٬۰۰۰ + ۶۰','۴ در دهگان هزار و ۶ در دهگان است.',numberVisual('40,060'),'گسترده‌نویسی'),q('این مجموع، کدام عدد را می‌سازد؟',['۱۰۲٬۳۵۴','۱۲٬۳۵۴','۱۲۰٬۳۵۴'],'۱۰۲٬۳۵۴','ارزش‌ها را جمع می‌کنیم.',`<div class="big-number" style="font-size:1.45rem" dir="ltr">۱۰۰٬۰۰۰ + ۲٬۰۰۰ + ۳۰۰ + ۵۰ + ۴</div>`,'گسترده‌نویسی')],
+        medium:[q('گسترده‌ی درست کدام است؟',['۶۰٬۰۰۰٬۰۰۰ + ۳٬۰۰۰٬۰۰۰ + ۸۰۰٬۰۰۰ + ۳۰٬۰۰۰ + ۱٬۰۰۰ + ۵۰۰ + ۶۰ + ۸','۶٬۰۰۰٬۰۰۰ + ۳۰۰٬۰۰۰ + ۸۰٬۰۰۰ + ۳٬۰۰۰ + ۱۵۶۸','۶۳٬۰۰۰٬۰۰۰ + ۸۳۱٬۵۶۸٬۰۰۰'],'۶۰٬۰۰۰٬۰۰۰ + ۳٬۰۰۰٬۰۰۰ + ۸۰۰٬۰۰۰ + ۳۰٬۰۰۰ + ۱٬۰۰۰ + ۵۰۰ + ۶۰ + ۸','هر رقم غیرصفر یک جمله دارد.',numberVisual('63,831,568'),'گسترده‌نویسی'),q('این مجموع چه عددی است؟',['۴۰۰٬۷۰۰٬۰۶۰','۴۰٬۷۰۰٬۰۶۰','۴۰۰٬۰۷۰٬۶۰۰'],'۴۰۰٬۷۰۰٬۰۶۰','۴۰۰ میلیون + ۷۰۰ هزار + ۶۰.',`<div class="big-number" style="font-size:1.5rem" dir="ltr">۴۰۰٬۰۰۰٬۰۰۰ + ۷۰۰٬۰۰۰ + ۶۰</div>`,'گسترده‌نویسی'),q('گسترده‌ی درست:',['۷۰٬۰۰۰٬۰۰۰ + ۹٬۰۰۰٬۰۰۰ + ۳۰۰٬۰۰۰ + ۴۰٬۰۰۰','۷۹٬۰۰۰٬۰۰۰ + ۳۴۰٬۰۰۰','هر دو گزینه'],'هر دو گزینه','می‌توان طبقه‌ها را جمع‌کرده یا هر رقم را جدا نوشت.',numberVisual('79,340,000'),'گسترده‌نویسی'),q('این مجموع، کدام عدد را می‌سازد؟',['۳٬۴۲۹٬۸۷۳','۳٬۴۹۲٬۸۷۳','۳۴٬۲۹۸٬۷۳۰'],'۳٬۴۲۹٬۸۷۳','ارزش‌ها در خانه‌های خود قرار می‌گیرند.',`<div class="big-number" style="font-size:1.35rem" dir="ltr">۳٬۰۰۰٬۰۰۰ + ۴۰۰٬۰۰۰ + ۲۰٬۰۰۰ + ۹٬۰۰۰ + ۸۰۰ + ۷۰ + ۳</div>`,'گسترده‌نویسی'),q('گسترده‌ی ۱۲٬۹۸۶٬۴۰۰ کدام است؟',['۱۰٬۰۰۰٬۰۰۰ + ۲٬۰۰۰٬۰۰۰ + ۹۰۰٬۰۰۰ + ۸۰٬۰۰۰ + ۶٬۰۰۰ + ۴۰۰','۱۲٬۰۰۰٬۰۰۰ + ۹۸٬۰۰۰ + ۶٬۴۰۰','۱۰۰٬۰۰۰٬۰۰۰ + ۲۹٬۸۶۴٬۰۰۰'],'۱۰٬۰۰۰٬۰۰۰ + ۲٬۰۰۰٬۰۰۰ + ۹۰۰٬۰۰۰ + ۸۰٬۰۰۰ + ۶٬۰۰۰ + ۴۰۰','هر رقم در ارزش خودش نوشته شد.', '', 'گسترده‌نویسی')],
+        hard:[q('کدام گسترده درست است؟',['۳۰٬۰۰۰٬۰۰۰٬۰۰۰ + ۷٬۰۰۰٬۰۰۰٬۰۰۰ + ۶۰٬۰۰۰٬۰۰۰ + ۷٬۰۰۰٬۰۰۰ + ۹۰۰٬۰۰۰ + ۱۰٬۰۰۰ + ۵۰۰ + ۴۰ + ۲','۳۷٬۰۰۰٬۰۰۰٬۰۰۰ + ۶۷٬۰۰۰٬۰۰۰ + ۹۱۰٬۰۰۰ + ۵۴۲','هر دو گزینه'],'هر دو گزینه','هر دو، جمع ارزش‌ها را درست نشان می‌دهند.',numberVisual('37,067,910,542'),'گسترده‌نویسی'),q('گسترده‌ی درست کدام است؟',['۵۰٬۰۰۰٬۰۰۰٬۰۰۰ + ۳٬۰۰۰٬۰۰۰٬۰۰۰ + ۴۰٬۰۰۰٬۰۰۰ + ۲٬۰۰۰٬۰۰۰ + ۱۰۰٬۰۰۰ + ۶۰٬۰۰۰ + ۹٬۰۰۰ + ۷۰ + ۷','۵۳٬۰۰۰٬۰۰۰٬۰۰۰ + ۴۲٬۰۰۰٬۰۰۰ + ۱۶۹٬۰۰۰ + ۷۷','هر دو گزینه'],'هر دو گزینه','یکی رقم‌به‌رقم و دیگری طبقه‌به‌طبقه است.',numberVisual('53,042,169,077'),'گسترده‌نویسی'),q('این مجموع کدام عدد است؟',['۱۲۹٬۸۶۴٬۸۰۰','۱۲٬۹۸۶٬۴۸۰','۱٬۲۹۸٬۶۴۸٬۰۰۰'],'۱۲۹٬۸۶۴٬۸۰۰','طبقه‌ها: ۱۲۹ | ۸۶۴ | ۸۰۰.',`<div class="big-number" style="font-size:1.35rem" dir="ltr">۱۰۰٬۰۰۰٬۰۰۰ + ۲۰٬۰۰۰٬۰۰۰ + ۹٬۰۰۰٬۰۰۰ + ۸۰۰٬۰۰۰ + ۶۰٬۰۰۰ + ۴٬۰۰۰ + ۸۰۰</div>`,'گسترده‌نویسی'),q('کدام گسترده درست است؟',['۱٬۰۰۰٬۰۰۰٬۰۰۰ + ۳۰۰٬۰۰۰٬۰۰۰ + ۷۰٬۰۰۰٬۰۰۰ + ۷٬۰۰۰٬۰۰۰ + ۳۰۰٬۰۰۰ + ۱۰٬۰۰۰','۱٬۳۷۷٬۰۰۰٬۰۰۰ + ۳۱۰٬۰۰۰','هر دو گزینه'],'هر دو گزینه','هر دو نمایش برابر ۱٬۳۷۷٬۳۱۰٬۰۰۰ هستند.',numberVisual('1,377,310,000'),'گسترده‌نویسی'),q('گسترده‌ی طبقه‌ای درست کدام است؟',['۶۳۰٬۰۰۰٬۰۰۰٬۰۰۰ + ۴۷۳٬۰۰۰٬۰۰۰ + ۱۲۰٬۰۰۰','۶۳٬۰۰۰٬۰۰۰٬۰۰۰ + ۴۷٬۳۰۰٬۰۰۰ + ۱۲٬۰۰۰','۶۳۰٬۴۷۳٬۰۰۰٬۰۰۰ + ۱۲۰'],'۶۳۰٬۰۰۰٬۰۰۰٬۰۰۰ + ۴۷۳٬۰۰۰٬۰۰۰ + ۱۲۰٬۰۰۰','طبقه‌ها را با ارزش کاملشان می‌نویسیم.',numberVisual('630,473,120,000'),'گسترده‌نویسی')]
+      }
+    };
+
+    banks.compare={};
+    const compareRaw={
+      easy:[['4,509','4,590','<'],['8,200','8,200','='],['79,340','9,412','>'],['60,000','80,000','<'],['102,354','102,345','>']],
+      medium:[['30,027,301','30,207,301','<'],['766,643','667,643','>'],['83,479','91,000','<'],['4,545,000','454,500','>'],['99,411,569','100,000,000','<']],
+      hard:[['12,508,314,147','9,998,653,749','>'],['678,239,175,346','735,117,493,111','<'],['37,067,910,542','37,067,910,542','='],['630,473,120,000','129,864,800','>'],['21.048','21.05','<']]
+    };
+    Object.keys(compareRaw).forEach(l=>banks.compare[l]=compareRaw[l].map(([a,b,answer])=>q('علامت درست را بین دو عدد انتخاب کن.',['<','=','>'],answer,answer==='='?'دو عدد برابرند.':(answer==='>'?'عدد چپ بزرگ‌تر است.':'عدد چپ کوچک‌تر است.'),`<div class="compare-demo"><span class="compare-num">${faNumberText(a)}</span><span class="compare-sign">؟</span><span class="compare-num">${faNumberText(b)}</span></div>`,'مقایسه')));
+
+    const sortRaw={
+      easy:[[['4,509','4,590','4,905'],'asc'],[['8,200','7,052','4,509'],'asc'],[['40,060','7,052','8,200'],'desc'],[['102,354','102,345','102,435'],'asc'],[['60,000','80,000','70,000'],'desc']],
+      medium:[[['30,027,301','30,207,301','29,999,999'],'asc'],[['766,643','667,643','676,643'],'desc'],[['83,479','91,000','85,961'],'asc'],[['9,412,000','8,280,000','79,340,000'],'asc'],[['3,429,873','3,178,856','3,359,439'],'desc']],
+      hard:[[['37,067,910,542','400,700,060','1,489.017'],'asc'],[['12,508,314,147','9,998,653,749','53,042,169,077'],'desc'],[['630,473,120,000','129,864,800','1,377,310,000'],'asc'],[['38,693,427,000','30,000,000,000','40,000,000,000'],'desc'],[['21.048','21.04','21.05'],'asc']]
+    };
+    const sortBanks={};
+    Object.keys(sortRaw).forEach(l=>sortBanks[l]=sortRaw[l].map(([numbers,order])=>({kind:'sort',numbers,order,topic:'مرتب‌کردن'})));
+
+    const axisBanks={
+      easy:[
+        ['20,000,000','۰','۱۰۰ میلیون',1,'۲۰ میلیون','۲۰ میلیون'],
+        ['40,000,000','۰','۱۰۰ میلیون',2,'۲۰ میلیون','۴۰ میلیون'],
+        ['60,000,000','۰','۱۰۰ میلیون',3,'۲۰ میلیون','۶۰ میلیون'],
+        ['80,000,000','۰','۱۰۰ میلیون',4,'۲۰ میلیون','۸۰ میلیون'],
+        ['100,000,000','۰','۱۰۰ میلیون',5,'۲۰ میلیون','۱۰۰ میلیون']
+      ],
+      medium:[
+        ['149,000,680','۰','۲۰۰ میلیون',4,'۴۰ میلیون','۱۶۰ میلیون'],
+        ['675,725,402','۰','۱ میلیارد',3,'۲۰۰ میلیون','۶۰۰ میلیون'],
+        ['3,215,475','۰','۱۰۰ میلیون',0,'۲۰ میلیون','صفر'],
+        ['85,961,077','۰','۱۰۰ میلیون',4,'۲۰ میلیون','۸۰ میلیون'],
+        ['129,864,800','۱۰۰ میلیون','۲۰۰ میلیون',1,'۲۰ میلیون','۱۲۰ میلیون']
+      ],
+      hard:[
+        ['630,473,120,000','۰','۱ تریلیون',3,'۲۰۰ میلیارد','۶۰۰ میلیارد'],
+        ['38,693,427,000','۰','۵۰ میلیارد',4,'۱۰ میلیارد','۴۰ میلیارد'],
+        ['19,231,000','۱۰ میلیون','۳۰ میلیون',2,'۴ میلیون','۱۸ میلیون'],
+        ['1,377,310,000','۱ میلیارد','۲ میلیارد',2,'۲۰۰ میلیون','۱ میلیارد و ۴۰۰ میلیون'],
+        ['37,067,910,542','۳۰ میلیارد','۴۰ میلیارد',4,'۲ میلیارد','۳۸ میلیارد']
+      ]
+    };
+    Object.keys(axisBanks).forEach(l=>axisBanks[l]=axisBanks[l].map(([value,min,max,answer,step,correctValue])=>({kind:'axis',value,min,max,answer,step,correctValue,topic:'محور اعداد'})));
+
+    const quizQuestions=[
+      q('در عدد زیر، رقم ۸ چه ارزش مکانی دارد؟',['صدگان هزار','دهگان هزار','یکان میلیون'],'صدگان هزار','۸ در خانه‌ی صدگان هزار است.',digitVisual('63,831,568',2),'ارزش مکانی'),
+      q('کدام عدد از این گسترده ساخته می‌شود؟',['۴۰۰٬۷۰۰٬۰۶۰','۴۰٬۷۰۰٬۰۶۰','۴۰۰٬۰۷۰٬۶۰۰'],'۴۰۰٬۷۰۰٬۰۶۰','۴۰۰ میلیون + ۷۰۰ هزار + ۶۰.',`<div class="big-number" style="font-size:1.4rem" dir="ltr">۴۰۰٬۰۰۰٬۰۰۰ + ۷۰۰٬۰۰۰ + ۶۰</div>`,'گسترده‌نویسی'),
+      q('نوشتار درست عدد کدام است؟',['سی و هفت میلیارد و شصت و هفت میلیون و نهصد و ده هزار و پانصد و چهل و دو','سیصد و هفتاد میلیارد و شصت و هفت میلیون و نود و یک هزار و پانصد و چهل و دو','سی و هفت میلیارد و ششصد و هفت میلیون و نهصد و ده هزار و پنجاه و دو'],'سی و هفت میلیارد و شصت و هفت میلیون و نهصد و ده هزار و پانصد و چهل و دو','طبقه‌ها را از چپ خواندیم.',numberVisual('37,067,910,542'),'عدد به حروف'),
+      q('«پنجاه و سه میلیارد و چهل و دو میلیون و یکصد و شصت و نه هزار و هفتاد و هفت» کدام است؟',['۵۳٬۰۴۲٬۱۶۹٬۰۷۷','۵٬۳۰۴٬۲۱۶٬۹۷۷','۵۳۴٬۲۱۶٬۹۷۷'],'۵۳٬۰۴۲٬۱۶۹٬۰۷۷','طبقه‌های ۰۴۲ و ۰۷۷ صفر نگهدارنده دارند.','', 'حروف به عدد'),
+      q('علامت درست کدام است؟',['<','=','>'],'<','اولین تفاوت از چپ: ۰ از ۲ کوچک‌تر است.',`<div class="compare-demo"><span class="compare-num">۳۰٬۰۲۷٬۳۰۱</span><span class="compare-sign">؟</span><span class="compare-num">۳۰٬۲۰۷٬۳۰۱</span></div>`,'مقایسه'),
+      q('کدام ترتیب از کوچک به بزرگ درست است؟',['۱٬۴۸۹/۰۱۷ < ۴۰۰٬۷۰۰٬۰۶۰ < ۳۷٬۰۶۷٬۹۱۰٬۵۴۲','۴۰۰٬۷۰۰٬۰۶۰ < ۱٬۴۸۹/۰۱۷ < ۳۷٬۰۶۷٬۹۱۰٬۵۴۲','۳۷٬۰۶۷٬۹۱۰٬۵۴۲ < ۴۰۰٬۷۰۰٬۰۶۰ < ۱٬۴۸۹/۰۱۷'],'۱٬۴۸۹/۰۱۷ < ۴۰۰٬۷۰۰٬۰۶۰ < ۳۷٬۰۶۷٬۹۱۰٬۵۴۲','تعداد رقم‌ها راهنماست.','', 'مرتب‌کردن'),
+      q('تقریب یک میلیون «با حذف رقم‌ها» چیست؟',['۷۹٬۰۰۰٬۰۰۰','۸۰٬۰۰۰٬۰۰۰','۷۹٬۳۴۰٬۰۰۰'],'۷۹٬۰۰۰٬۰۰۰','۳۴۰ هزار حذف می‌شود.',numberVisual('79,340,000'),'تقریب'),
+      q('نزدیک‌ترین ده میلیون کدام است؟',['۱۲۰٬۰۰۰٬۰۰۰','۱۳۰٬۰۰۰٬۰۰۰','۱۲۹٬۰۰۰٬۰۰۰'],'۱۳۰٬۰۰۰٬۰۰۰','این عدد فقط ۱۳۵٬۲۰۰ تا با ۱۳۰ میلیون فاصله دارد.',numberVisual('129,864,800'),'تقریب'),
+      q('عدد ۱۴۹٬۰۰۰٬۶۸۰ روی محور در کدام بازه است؟',['بین ۰ و ۱۰۰ میلیون','بین ۱۰۰ و ۲۰۰ میلیون','بین ۲۰۰ و ۳۰۰ میلیون'],'بین ۱۰۰ و ۲۰۰ میلیون','۱۴۹ میلیون از ۱۰۰ بیشتر و از ۲۰۰ کمتر است.','', 'محور اعداد'),
+      q('در ۶۳٬۸۳۱٬۵۶۸ رقم ۱ در یکان هزار است. پس از ضرب عدد در ۱۰۰، رقم ۱ به کدام خانه می‌رود؟',['دهگان هزار','صدگان هزار','یکان میلیون'],'صدگان هزار','ضرب در ۱۰۰ یعنی دو خانه جابه‌جایی به چپ.','', 'ضرب در ۱۰۰')
+    ];
+
+    let game={id:null,level:'easy',questions:[],index:0,score:0,answered:false,wrongTopics:[],builderOrder:[],sortOrder:[]};
+
+    function openGames(){showScreen('gamesScreen');updateGameHub()}
+    $('#gamesCard').addEventListener('click',openGames);
+    $('#backToGames').addEventListener('click',openGames);
+    $$('.game-card').forEach(card=>card.addEventListener('click',()=>startGame(card.dataset.game)));
+    $$('.level-btn').forEach(btn=>btn.addEventListener('click',()=>{
+      if(btn.classList.contains('active')) return;
+      $$('.level-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      game.level = btn.dataset.level;
+      initRound();
+    }));
+
+    function getBank(id,level){
+      if(id==='builder') return builders[level]; 
+      if(id==='sort') return sortBanks[level]; 
+      if(id==='axis') return axisBanks[level]; 
+      if(id==='quiz') return quizQuestions;
+      return banks[id][level];
+    }
+
+    function startGame(id){
+      game.id = id;
+      game.level = 'easy';
+      $('#playTitle').textContent = meta[id].title;
+      $('#playIcon').textContent = meta[id].icon;
+      $('#playSubtitle').textContent = meta[id].subtitle;
+      $('#levelChooser').hidden = id==='quiz';
+      $$('.level-btn').forEach(b=>b.classList.toggle('active',b.dataset.level==='easy'));
+      showScreen('playScreen');
+      initRound();
+    }
+
+    function initRound(){
+      const rawBank = getBank(game.id, game.level);
+      game.questions = game.id==='quiz' ? [...quizQuestions] : shuffle(rawBank);
+      // پاکسازی توکن‌های قبلی برای بازی‌های ساختنی و ترتیبی
+      game.questions.forEach(item => { delete item.tokens; });
+      game.index = 0;
+      game.score = 0;
+      game.answered = false;
+      game.wrongTopics = [];
+      game.builderOrder = [];
+      game.sortOrder = [];
+      renderQuestion();
+    }
+
+    function renderQuestion(){
+      const total = game.questions.length, qn = game.questions[game.index];
+      game.answered = false;
+      game.builderOrder = [];
+      game.sortOrder = [];
+      const playShell = $('.play-shell'); if(playShell) playShell.scrollTop = 0;
+      $('#gameScore').textContent = toFa(game.score);
+      $('#questionCount').textContent = `سؤال ${toFa(game.index+1)} از ${toFa(total)}`;
+      $('#questionBar').style.width = ((game.index)/total*100)+'%';
+      
+      if(qn.kind==='builder') renderBuilder(qn);
+      else if(qn.kind==='sort') renderSort(qn);
+      else if(qn.kind==='axis') renderAxis(qn);
+      else renderMC(qn);
+    }
+
+    function footerHTML(){
+      return `<div id="feedback" class="feedback" hidden></div><div class="game-next-row"><button id="nextQuestion" class="btn primary" type="button" hidden>${game.index===game.questions.length-1?'دیدن نتیجه':'سؤال بعدی ←'}</button></div>`;
+    }
+
+    const isMathText = value => /[+<>=]/.test(String(value)) && /[۰-۹0-9]/.test(String(value));
+    const optionContent = value => isMathText(value) ? `<span class="math-text" dir="ltr">${esc(value)}</span>` : esc(value);
+
+    function renderMC(item){
+      const isSymbol = item.options.every(o => ['<','>','='].includes(o));
+      const opts = isSymbol ? ['<','=','>'] : shuffle(item.options);
+      $('#gameBody').innerHTML = `
+        <div class="question-kicker">${game.id==='quiz'?'آزمون جامع':meta[game.id].subtitle}</div>
+        <div class="question-text">${item.question}</div>
+        ${item.visual?`<div class="game-visual">${item.visual}</div>`:''}
+        <div class="mc-options ${isSymbol?'grid-3':''}">
+          ${opts.map(o=>`<button class="mc-option ${isSymbol?'symbol-opt':''}" type="button" data-value="${esc(o)}">${optionContent(o)}</button>`).join('')}
+        </div>
+        ${footerHTML()}
+      `;
+      $$('.mc-option',$('#gameBody')).forEach(b=>b.addEventListener('click',()=>answerMC(b,item)));
+    }
+
+    function answerMC(btn,item){
+      if(game.answered) return;
+      game.answered = true;
+      const picked = btn.dataset.value, correct = picked === item.answer;
+      $$('.mc-option',$('#gameBody')).forEach(b=>{
+        b.disabled = true;
+        if(b.dataset.value === item.answer) b.classList.add('correct');
+      });
+      if(!correct) btn.classList.add('wrong');
+      finishAnswer(correct, item.explain, item.answer, item.topic);
+    }
+
+    function renderBuilder(item){
+      if(!item.tokens) item.tokens = shuffle(item.target.split('').map((digit,i)=>({id:i,digit})));
+      $('#gameBody').innerHTML = `
+        <div class="question-kicker">عدد را از چپ به راست بساز</div>
+        <div class="question-text">کارت‌ها را لمس کن:</div>
+        <div class="builder-target">${item.words}</div>
+        <div class="build-slot" id="buildSlot"><span class="muted">عدد ساخته‌شده اینجا می‌آید</span></div>
+        <div class="card-pool" id="cardPool"></div>
+        <div class="tool-row">
+          <button class="btn small" id="builderUndo">↶ یک قدم برگشت</button>
+          <button class="btn blue small" id="builderCheck">بررسی پاسخ ✓</button>
+        </div>
+        ${footerHTML()}
+      `;
+      renderBuilderCards(item);
+      $('#builderUndo').onclick = () => { if(!game.answered){ game.builderOrder.pop(); renderBuilderCards(item); } };
+      $('#builderCheck').onclick = () => checkBuilder(item);
+    }
+
+    function renderBuilderCards(item){
+      const used = new Set(game.builderOrder);
+      const slot = $('#buildSlot'), pool = $('#cardPool');
+      slot.innerHTML = game.builderOrder.length ? game.builderOrder.map((id,pos)=>{
+        const t = item.tokens.find(x=>x.id===id);
+        return `<button class="digit-card built" data-pos="${pos}">${toFa(t.digit)}</button>`;
+      }).join('') : '<span class="muted">عدد ساخته‌شده اینجا می‌آید</span>';
+      
+      pool.innerHTML = item.tokens.filter(t=>!used.has(t.id)).map(t=>
+        `<button class="digit-card" data-id="${t.id}">${toFa(t.digit)}</button>`
+      ).join('');
+
+      $$('.digit-card',pool).forEach(b=>b.onclick=()=>{ game.builderOrder.push(Number(b.dataset.id)); renderBuilderCards(item); });
+      $$('.digit-card.built',slot).forEach(b=>b.onclick=()=>{ game.builderOrder.splice(Number(b.dataset.pos),1); renderBuilderCards(item); });
+    }
+
+    function checkBuilder(item){
+      if(game.answered) return;
+      const built = game.builderOrder.map(id=>item.tokens.find(x=>x.id===id).digit).join('');
+      if(built.length !== item.target.length){ showTemp('هنوز همه‌ی کارت‌ها را نچیده‌ای.'); return; }
+      game.answered = true;
+      const correct = built === item.target;
+      $$('.digit-card').forEach(b=>b.disabled=true);
+      finishAnswer(correct, 'ترتیب درست رقم‌ها از بزرگ‌ترین خانه به یکان است.', toFa(item.target), 'عدد و حروف');
+    }
+
+    function renderSort(item){
+      if(!item.tokens) item.tokens = shuffle(item.numbers.map((value,i)=>({id:i,value})));
+      $('#gameBody').innerHTML = `
+        <div class="question-kicker">مرتب‌سازی</div>
+        <div class="question-text">عددها را از <b>${item.order==='asc'?'کوچک به بزرگ':'بزرگ به کوچک'}</b> لمس کن.</div>
+        <div class="sort-tray" id="sortTray"><span class="muted">ترتیب انتخاب تو</span></div>
+        <div class="sort-pool" id="sortPool"></div>
+        <div class="tool-row">
+          <button class="btn small" id="sortUndo">↶ یک قدم برگشت</button>
+          <button class="btn blue small" id="sortCheck">بررسی پاسخ ✓</button>
+        </div>
+        ${footerHTML()}
+      `;
+      renderSortCards(item);
+      $('#sortUndo').onclick = () => { if(!game.answered){ game.sortOrder.pop(); renderSortCards(item); } };
+      $('#sortCheck').onclick = () => checkSort(item);
+    }
+
+    function renderSortCards(item){
+      const used = new Set(game.sortOrder), tray = $('#sortTray'), pool = $('#sortPool');
+      tray.innerHTML = game.sortOrder.length ? game.sortOrder.map((id,pos)=>{
+        const t = item.tokens.find(x=>x.id===id);
+        return `<button class="number-card selected" data-pos="${pos}">${faNumberText(t.value)}</button>`;
+      }).join('') : '<span class="muted">ترتیب انتخاب تو</span>';
+
+      pool.innerHTML = item.tokens.filter(t=>!used.has(t.id)).map(t=>
+        `<button class="number-card" data-id="${t.id}">${faNumberText(t.value)}</button>`
+      ).join('');
+
+      $$('.number-card',pool).forEach(b=>b.onclick=()=>{ game.sortOrder.push(Number(b.dataset.id)); renderSortCards(item); });
+      $$('.number-card.selected',tray).forEach(b=>b.onclick=()=>{ game.sortOrder.splice(Number(b.dataset.pos),1); renderSortCards(item); });
+    }
+
+    const numericValue = s => Number(String(s).replace(/,/g,''));
+    function checkSort(item){
+      if(game.answered) return;
+      if(game.sortOrder.length !== item.numbers.length){ showTemp('همه‌ی کارت‌ها را انتخاب کن.'); return; }
+      const picked = game.sortOrder.map(id=>item.tokens.find(x=>x.id===id).value);
+      const expected = [...item.numbers].sort((a,b)=>(numericValue(a)-numericValue(b))*(item.order==='asc'?1:-1));
+      const correct = picked.every((v,i)=>v===expected[i]);
+      game.answered = true;
+      $$('.number-card').forEach(b=>b.disabled=true);
+      finishAnswer(correct, 'برای عددهای هم‌رقم، از چپ به راست مقایسه می‌کنیم.', expected.map(faNumberText).join(item.order==='asc'?' < ':' > '), 'مرتب‌کردن');
+    }
+
+    function renderAxis(item){
+      const letters = ['الف','ب','پ','ت','ث','ج'];
+      $('#gameBody').innerHTML = `
+        <div class="question-kicker">محل تقریبی</div>
+        <div class="question-text">نزدیک‌ترین نشانک به عدد زیر کدام است؟</div>
+        ${numberVisual(item.value)}
+        <div class="axis-hint">محور ۵ فاصله‌ی مساوی دارد؛ هر فاصله: ${item.step}</div>
+        <div class="game-axis">
+          <span class="end-label start">${item.min}</span>
+          <span class="end-label end">${item.max}</span>
+          ${letters.map((x,i)=>`<button class="axis-pick" aria-label="نشانک ${x}" style="left:${i*20}%" data-index="${i}">${x}</button>`).join('')}
+        </div>
+        ${footerHTML()}
+      `;
+      $$('.axis-pick').forEach(b=>b.onclick=()=>answerAxis(b,item));
+    }
+
+    function answerAxis(btn,item){
+      if(game.answered) return;
+      game.answered = true;
+      const letters = ['الف','ب','پ','ت','ث','ج'], i = Number(btn.dataset.index), correct = i === item.answer;
+      $$('.axis-pick').forEach((b,j)=>{
+        b.disabled = true;
+        if(j === item.answer) b.classList.add('correct');
+      });
+      if(!correct) btn.classList.add('wrong');
+      finishAnswer(correct, `هر فاصله ${item.step} است؛ پس محل تقریبی روی ${item.correctValue} قرار می‌گیرد.`, `نشانک ${letters[item.answer]} (${item.correctValue})`, 'محور اعداد');
+    }
+
+    function showTemp(text){
+      let old = $('#tempMessage'); if(old) old.remove();
+      const el = document.createElement('div');
+      el.id = 'tempMessage'; el.className = 'feedback bad'; el.textContent = text;
+      $('#gameBody').appendChild(el);
+      setTimeout(()=>el.remove(),1700);
+    }
+
+    function finishAnswer(correct,explain,answer,topic){
+      if(correct){
+        game.score += 10;
+        // اضافه شدن ۱۰ امتیاز به مجموع کل امتیازات دانش‌آموز در صفحه اصلی
+        progress.totalScore = (progress.totalScore || 0) + 10;
+        saveProgress();
+      } else {
+        game.wrongTopics.push(topic || meta[game.id].subtitle);
+      }
+      $('#gameScore').textContent = toFa(game.score);
+      const fb = $('#feedback');
+      fb.hidden = false;
+      fb.className = 'feedback ' + (correct ? 'good' : 'bad');
+      const shownAnswer = isMathText(answer) ? `<b class="math-text" dir="ltr">${esc(answer)}</b>` : `<b>${esc(answer)}</b>`;
+      fb.innerHTML = `
+        <span class="fb-icon">${correct?'✅':'❌'}</span>
+        <div>
+          <strong>${correct?'آفرین، ۱۰ امتیاز گرفتی!':'این سؤال نیاز به دقت بیشتری داشت.'}</strong>
+          ${!correct?`پاسخ درست: ${shownAnswer}<br>`:''}
+          ${esc(explain||'')}
+        </div>
+      `;
+      const next = $('#nextQuestion');
+      next.hidden = false;
+      next.onclick = nextQuestion;
+    }
+
+    function nextQuestion(){
+      if(game.index < game.questions.length-1){
+        game.index++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    function showResult(){
+      const max = game.questions.length * 10;
+      const pct = Math.round(game.score / max * 100);
+      const stars = pct>=90 ? '★★★' : pct>=60 ? '★★☆' : '★☆☆';
+      let title = pct>=90 ? 'تسلط فوق‌العاده!' : pct>=70 ? 'خیلی خوب پیش رفتی!' : pct>=50 ? 'در مسیر یادگیری هستی' : 'یک دور دیگر تمرین کنیم';
+      
+      const key = game.id==='quiz' ? 'quiz' : `${game.id}-${game.level}`;
+      const old = progress.bestScores[key] || 0;
+      if(game.score > old) progress.bestScores[key] = game.score;
+      if(!progress.completed.includes(game.id)) progress.completed.push(game.id);
+      saveProgress();
+
+      $('#questionBar').style.width = '100%';
+      $('#questionCount').textContent = 'پایان دور';
+      
+      const review = [...new Set(game.wrongTopics.filter(Boolean))];
+      $('#gameBody').innerHTML = `
+        <div class="result-card">
+          <div class="result-emoji">${pct>=70?'🏆':'🌱'}</div>
+          <div class="result-score">${toFa(game.score)} / ${toFa(max)}</div>
+          <div class="stars">${stars}</div>
+          <h3>${title}</h3>
+          <p class="muted">مجموع کل امتیازات شما در صفحه اصلی: <b>${toFa(progress.totalScore||0)} امتیاز</b></p>
+          ${review.length ? `<div class="review-note"><b>پیشنهاد مرور:</b> ${review.map(esc).join('، ')}</div>` : '<div class="review-note">همه‌ی موضوع‌های این دور را عالی پاسخ دادی!</div>'}
+          <div class="result-actions">
+            <button class="btn primary" id="replayGame">دور جدید این بازی ↻</button>
+            <button class="btn" id="resultHub">فهرست بازی‌ها</button>
+            ${game.id!=='quiz'?'<button class="btn sun" id="resultQuiz">آزمون نهایی 🏆</button>':''}
+          </div>
+        </div>
+      `;
+      $('#replayGame').onclick = initRound;
+      $('#resultHub').onclick = openGames;
+      const qbtn = $('#resultQuiz'); if(qbtn) qbtn.onclick = () => startGame('quiz');
+      if(pct>=70) confetti();
+    }
+
+    function confetti(){
+      const colors=['#12a594','#3978d4','#ffc857','#ff6b6b','#7c63d8'];
+      for(let i=0;i<22;i++){
+        const s=document.createElement('i');
+        s.className='confetti';
+        s.style.left=Math.random()*100+'vw';
+        s.style.background=colors[i%colors.length];
+        s.style.animationDelay=Math.random()*.45+'s';
+        document.body.appendChild(s);
+        setTimeout(()=>s.remove(),2400);
+      }
+    }
+
+    function updateGameHub(){
+      const completed = new Set(progress.completed||[]);
+      $('#hubComplete').textContent = toFa(completed.size) + ' بازی کامل‌شده';
+      $$('[data-best]').forEach(el=>{
+        const id = el.dataset.best;
+        if(id==='quiz'){
+          const v = progress.bestScores.quiz;
+          el.textContent = v!=null ? `بهترین: ${toFa(v)} از ۱۰۰` : 'بهترین: —';
+          return;
+        }
+        const vals = ['easy','medium','hard'].map(l=>progress.bestScores[`${id}-${l}`]).filter(v=>v!=null);
+        el.textContent = vals.length ? `بهترین: ${toFa(Math.max(...vals))} از ۵۰` : 'بهترین: —';
+      });
+    }
+
+    function updateHomeStats(){
+      // پیشرفت اسلایدها
+      const learnPct = Math.round(((progress.seenSlides||[]).length / slides.length) * 100);
+      $('#homeLearnBar').style.width = learnPct + '%';
+      $('#learnCardText').textContent = learnPct ? `${toFa(learnPct)}٪ مسیر آموزشی دیده شده` : 'آموزش مرحله‌ای از پایه تا تسلط';
+      
+      // پیشرفت بازی‌ها
+      const done = new Set(progress.completed||[]).size;
+      $('#homeGamesBar').style.width = Math.min(done/9*100, 100) + '%';
+      $('#gamesCardText').textContent = done ? `${toFa(done)} از ۹ بخش کامل شده` : '۸ بازی + آزمون نهایی ۱۰ سؤالی';
+
+      // نمایش مجموع امتیاز کل و عنوان متناسب با آن
+      const total = progress.totalScore || 0;
+      if($('#homeTotalScore')) $('#homeTotalScore').textContent = toFa(total);
+      if($('#homeRankTitle')){
+        let rank = 'در حال شروع یادگیری 🌱';
+        if(total >= 600) rank = 'استاد برجسته عددنویسی 👑';
+        else if(total >= 400) rank = 'قهرمان محاسبات ریاضی 🏆';
+        else if(total >= 200) rank = 'ریاضی‌دان پرتلاش و ماهر 🌟';
+        else if(total >= 70) rank = 'در مسیر تسلط و پیشرفت 🚀';
+        $('#homeRankTitle').textContent = rank;
+      }
+    }
+
+    updateHomeStats();
+    updateGameHub();
+  })();
+  </script>
+</body>
+</html>
